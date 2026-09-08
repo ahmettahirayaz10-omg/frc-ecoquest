@@ -15,14 +15,14 @@
             nature: {
               deep: '#041510',
               forest: '#09271e',
-              glass: 'rgba(9, 39, 30, 0.55)',
+              glass: 'rgba(9, 39, 30, 0.65)',
               glassBorder: 'rgba(52, 211, 153, 0.25)',
               emerald: '#10B981',
               mint: '#34D399',
               teal: '#14B8A6',
               cyan: '#06B6D4',
               sun: '#FBBF24',
-              softGlow: 'rgba(16, 185, 129, 0.2)'
+              softGlow: 'rgba(16, 185, 129, 0.25)'
             }
           },
           fontFamily: {
@@ -33,7 +33,8 @@
             'float-gentle': 'floatGentle 4s ease-in-out infinite',
             'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
             'bounce-subtle': 'bounceSubtle 2s infinite',
-            'leaf-sway': 'leafSway 5s ease-in-out infinite alternate',
+            'spin-slow': 'spin 18s linear infinite',
+            'glow-pulse': 'glowPulse 2.5s ease-in-out infinite',
           },
           keyframes: {
             floatGentle: {
@@ -42,22 +43,22 @@
             },
             pulseSoft: {
               '0%, 100%': { opacity: '1', filter: 'drop-shadow(0 0 15px rgba(52, 211, 153, 0.4))' },
-              '50%': { opacity: '0.85', filter: 'drop-shadow(0 0 25px rgba(20, 184, 166, 0.6))' },
+              '50%': { opacity: '0.85', filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.6))' },
+            },
+            glowPulse: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 15px rgba(16, 185, 129, 0.5))' },
+              '50%': { filter: 'drop-shadow(0 0 30px rgba(6, 182, 212, 0.8))' },
             },
             bounceSubtle: {
               '0%, 100%': { transform: 'translateY(0)' },
               '50%': { transform: 'translateY(-4px)' },
-            },
-            leafSway: {
-              '0%': { transform: 'rotate(-3deg)' },
-              '100%': { transform: 'rotate(4deg)' },
             }
           }
         }
       }
     }
   </script>
-  <!-- Google Fonts: Warm, friendly, rounded & readable fonts -->
+  <!-- Google Fonts: Warm, rounded, readable modern fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -65,13 +66,13 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #051812;
+      background-color: #04140f;
       color: #f1f8f5;
       background-image: 
         radial-gradient(circle at 20% 15%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
         radial-gradient(circle at 80% 25%, rgba(6, 182, 212, 0.14) 0%, transparent 40%),
-        radial-gradient(circle at 50% 85%, rgba(52, 211, 153, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 90% 90%, rgba(251, 191, 36, 0.08) 0%, transparent 35%);
+        radial-gradient(circle at 50% 80%, rgba(52, 211, 153, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 85% 90%, rgba(251, 191, 36, 0.08) 0%, transparent 35%);
       background-attachment: fixed;
     }
 
@@ -79,46 +80,85 @@
       font-family: 'Outfit', 'Quicksand', sans-serif;
     }
 
-    /* Glassmorphism Styles */
+    /* Glassmorphism Classes */
     .glass-card {
-      background: rgba(9, 39, 30, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(52, 211, 153, 0.22);
-      box-shadow: 0 12px 35px -8px rgba(3, 20, 14, 0.5), 0 0 20px rgba(16, 185, 129, 0.08);
+      background: rgba(8, 36, 28, 0.68);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      box-shadow: 0 14px 40px -10px rgba(2, 18, 13, 0.6), 0 0 25px rgba(16, 185, 129, 0.1);
     }
 
     .glass-card-hover {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card-hover:hover {
-      transform: translateY(-4px);
-      border-color: rgba(52, 211, 153, 0.45);
-      box-shadow: 0 20px 40px -10px rgba(3, 20, 14, 0.7), 0 0 25px rgba(16, 185, 129, 0.18);
+      transform: translateY(-5px);
+      border-color: rgba(52, 211, 153, 0.55);
+      box-shadow: 0 22px 50px -12px rgba(2, 18, 13, 0.8), 0 0 35px rgba(16, 185, 129, 0.25);
     }
 
     .glass-nav {
-      background: rgba(5, 24, 18, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      background: rgba(4, 21, 16, 0.88);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.25);
     }
 
-    .glow-mint {
-      filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.5));
+    .neon-glow-cyan {
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.35), inset 0 0 15px rgba(6, 182, 212, 0.15);
     }
 
-    /* Custom Friendly Scrollbar */
+    .neon-glow-emerald {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35), inset 0 0 15px rgba(16, 185, 129, 0.15);
+    }
+
+    /* Custom Friendly Range Slider */
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #062319;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: 9999px;
+      height: 10px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #34D399, #06B6D4);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.8);
+      transition: transform 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #34D399, #06B6D4);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.8);
+      cursor: pointer;
+    }
+
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
     }
     ::-webkit-scrollbar-track {
-      background: #051812;
+      background: #04140f;
     }
     ::-webkit-scrollbar-thumb {
-      background: #134e3e;
+      background: #114c3c;
       border-radius: 9999px;
-      border: 2px solid #051812;
+      border: 2px solid #04140f;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #10B981;
@@ -133,21 +173,12 @@
       background: #a7f3d0;
       box-shadow: 0 0 8px #34d399, 0 0 16px #10b981;
       pointer-events: none;
-      animation: floatFirefly 8s ease-in-out infinite;
+      animation: floatFirefly 9s ease-in-out infinite;
     }
     @keyframes floatFirefly {
       0% { transform: translate(0, 0) scale(0.8); opacity: 0.2; }
-      50% { transform: translate(25px, -30px) scale(1.3); opacity: 0.85; }
-      100% { transform: translate(-15px, -60px) scale(0.6); opacity: 0.1; }
-    }
-
-    /* Tile sensor animations */
-    .sensor-pop-in {
-      animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @keyframes popIn {
-      0% { transform: scale(0.4) rotate(-10deg); opacity: 0; }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: translate(30px, -35px) scale(1.4); opacity: 0.85; }
+      100% { transform: translate(-20px, -70px) scale(0.6); opacity: 0.1; }
     }
 
     /* Modal Animation */
@@ -162,40 +193,39 @@
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden selection:bg-emerald-400 selection:text-emerald-950">
 
-  <!-- Floating Canvas for Celebrations -->
+  <!-- Celebration Canvas for Confetti -->
   <canvas id="celebrationCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
 
   <!-- Ambient Floating Glows -->
-  <div class="fixed top-12 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-soft"></div>
-  <div class="fixed bottom-16 right-10 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-soft"></div>
+  <div class="fixed top-10 left-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-soft"></div>
+  <div class="fixed bottom-20 right-10 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-soft"></div>
 
   <!-- Ambient Fireflies -->
-  <div class="firefly" style="top: 25%; left: 15%; animation-delay: 0s;"></div>
-  <div class="firefly" style="top: 60%; left: 80%; animation-delay: 2.5s;"></div>
-  <div class="firefly" style="top: 80%; left: 30%; animation-delay: 5s;"></div>
-  <div class="firefly" style="top: 35%; left: 70%; animation-delay: 1.2s;"></div>
+  <div class="firefly" style="top: 20%; left: 12%; animation-delay: 0s;"></div>
+  <div class="firefly" style="top: 65%; left: 82%; animation-delay: 2.5s;"></div>
+  <div class="firefly" style="top: 85%; left: 25%; animation-delay: 5s;"></div>
+  <div class="firefly" style="top: 30%; left: 75%; animation-delay: 1.2s;"></div>
 
-  <!-- TOP NAVIGATION BAR (Team Lyron 10953) -->
+  <!-- TOP NAVIGATION BAR (TEAM LYRON 10953) -->
   <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Left: Friendly Team Branding -->
       <div class="flex items-center space-x-3 sm:space-x-4">
-        <!-- Friendly Leaf & Robot Badge -->
+        <!-- Pure CSS/SVG Bio-Robot Emblem -->
         <div class="relative group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 p-0.5 shadow-lg shadow-emerald-900/40 group-hover:shadow-emerald-500/30 transition-all duration-300">
-            <div class="w-full h-full rounded-[14px] bg-[#07241c] flex items-center justify-center">
-              <!-- Nature Sprout + Robot Cog Icon -->
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 p-0.5 shadow-lg shadow-emerald-900/40 group-hover:shadow-emerald-400/50 transition-all duration-300">
+            <div class="w-full h-full rounded-[14px] bg-[#062018] flex items-center justify-center">
               <svg class="w-7 h-7 text-emerald-300 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21V11" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-4.418 3.582-8 8-8 0 4.418-3.582 8-8 8z" fill="rgba(52, 211, 153, 0.3)" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-4.418-3.582-8-8-8 0 4.418 3.582 8 8 8z" fill="rgba(20, 184, 166, 0.3)" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-4.418 3.582-8 8-8 0 4.418-3.582 8-8 8z" fill="rgba(52, 211, 153, 0.35)" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-4.418-3.582-8-8-8 0 4.418 3.582 8 8 8z" fill="rgba(6, 182, 212, 0.35)" />
               </svg>
             </div>
           </div>
           <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-[#051812]"></span>
+            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-[#04140f]"></span>
           </span>
         </div>
 
@@ -204,12 +234,12 @@
             <span class="font-display font-extrabold text-xl sm:text-2xl tracking-wide text-white">
               TEAM LYRON <span class="text-emerald-400 font-black">10953</span>
             </span>
-            <span class="hidden md:inline-flex px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-500/30">
+            <span class="hidden md:inline-flex px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-900/70 text-emerald-300 border border-emerald-500/30">
               FIRST® Robotics
             </span>
           </div>
           <p class="text-xs text-emerald-300/80 font-medium flex items-center gap-1.5">
-            <span class="inline-block w-2 h-2 rounded-full bg-teal-400"></span>
+            <span class="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
             FRC EcoQuest • Biyo-Robotik Keşif Portalı
           </p>
         </div>
@@ -232,7 +262,6 @@
         <!-- Points Counter (Default 0 XP) -->
         <div class="relative group">
           <div class="flex items-center bg-gradient-to-r from-emerald-900/70 via-[#0a3328] to-teal-900/70 border border-emerald-400/40 hover:border-emerald-300 rounded-2xl px-4 py-2 shadow-lg shadow-emerald-950/50 transition-all">
-            <!-- Joyful XP Sparkle Icon -->
             <div class="w-8 h-8 rounded-xl bg-emerald-500/25 text-emerald-300 flex items-center justify-center mr-2.5 shadow-inner">
               <svg class="w-4 h-4 text-emerald-300 animate-bounce-subtle" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
@@ -247,7 +276,7 @@
             </div>
           </div>
           <!-- Floating XP Pop Indicator -->
-          <div id="xpFloatPop" class="absolute -top-7 right-3 text-xs font-display font-black text-amber-300 bg-emerald-950 px-2 py-0.5 rounded-full border border-amber-400/50 opacity-0 transform translate-y-2 pointer-events-none transition-all duration-700 shadow-md">
+          <div id="xpFloatPop" class="absolute -top-7 right-3 text-xs font-display font-black text-amber-300 bg-emerald-950 px-2.5 py-0.5 rounded-full border border-amber-400/50 opacity-0 transform translate-y-2 pointer-events-none transition-all duration-700 shadow-md">
             +250 XP ⭐
           </div>
         </div>
@@ -272,9 +301,8 @@
 
     <!-- HERO SECTION: WELCOMING & FRIENDLY DISCOVERY BANNER -->
     <section class="relative rounded-3xl overflow-hidden glass-card p-6 sm:p-10 border border-emerald-400/30 shadow-2xl">
-      <!-- Soft ambient radial leaves -->
       <div class="absolute -right-16 -top-16 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-teal-400/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-16 -bottom-16 w-80 h-80 bg-cyan-400/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
         <div class="max-w-2xl space-y-4">
@@ -291,7 +319,7 @@
           </h1>
 
           <p class="text-emerald-100/80 text-base sm:text-lg leading-relaxed font-normal">
-            Geleceğin biyo-mühendisleri arasına hoş geldiniz! Bu keşif modülünde sensörler konuşlandırarak biyo-kubbedeki toprak pH'ını ve nem dengesini koruyacak, doğayı canlandırırken yeni başarı rozetlerinin sahibi olacaksınız.
+            Geleceğin biyo-mühendisleri arasına hoş geldiniz! Görev 1'de sensörlerle ekosistemi dengeleyin, Görev 2'de 6-eksenli robot kolunun açı ve uzanımını yöneterek nadir bitki tohumlarını steril tüplere aktarın!
           </p>
         </div>
 
@@ -304,8 +332,8 @@
           </div>
           <div class="text-center px-2 border-r border-emerald-800/60">
             <span class="text-xs text-emerald-300/70 font-medium block">Aktif Aşama</span>
-            <span id="activeMissionStatus" class="font-display font-bold text-teal-300 text-base">Görev 1</span>
-            <span class="text-[10px] text-teal-400/60 block">Sensörler</span>
+            <span id="activeMissionStatus" class="font-display font-bold text-teal-300 text-base">Görev 1 & 2</span>
+            <span class="text-[10px] text-teal-400/60 block">Oynanabilir</span>
           </div>
           <div class="text-center px-2">
             <span class="text-xs text-emerald-300/70 font-medium block">Doğa Durumu</span>
@@ -323,10 +351,10 @@
           <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
             <span>🌸</span> EĞİTİM MODÜLLERİ VE GÖREVLER
           </h2>
-          <p class="text-sm text-emerald-200/70 mt-1">Görevleri sırasıyla tamamlayarak yeni biyo-robotik ekipmanlarının kilidini açın.</p>
+          <p class="text-sm text-emerald-200/70 mt-1">Görevleri tamamlayarak biyo-robotik keşif tecrübesi kazanın.</p>
         </div>
         <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-900/50 text-emerald-300 border border-emerald-500/20 hidden sm:inline-block">
-          Aşama 1 / 3
+          Modüller Aktif
         </span>
       </div>
 
@@ -339,9 +367,9 @@
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 flex items-center gap-1.5 shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                AKTİF KEŞİF
+                GÖREV 1
               </span>
-              <span class="text-xs font-bold text-emerald-400/70">GÖREV 1</span>
+              <span class="text-xs font-bold text-emerald-400/70">SENSÖR GRID</span>
             </div>
 
             <!-- Title -->
@@ -378,7 +406,7 @@
             </div>
 
             <button id="startMission1Btn" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 hover:from-emerald-400 hover:to-teal-400 text-emerald-950 font-display font-extrabold text-sm tracking-wide shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2 cursor-pointer">
-              <span>Keşfi Başlat & Simülasyona Git</span>
+              <span>Görev 1 Simülasyonunu Aç</span>
               <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -386,100 +414,100 @@
           </div>
         </div>
 
-        <!-- MISSION 2 CARD (LOCKED) -->
-        <div id="mission2Card" class="relative group rounded-3xl glass-card border border-emerald-900/40 p-6 sm:p-7 opacity-75 hover:opacity-90 transition-all flex flex-col justify-between">
+        <!-- MISSION 2 CARD (INTERACTIVE / ACTIVE ROBOT ARM) -->
+        <div id="mission2Card" class="relative group rounded-3xl glass-card border-2 border-cyan-400/80 p-6 sm:p-7 shadow-xl shadow-cyan-950/50 glass-card-hover flex flex-col justify-between">
           <div>
             <!-- Status Pill -->
             <div class="flex items-center justify-between mb-4">
-              <span id="mission2StatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300/60 border border-emerald-800/40 flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                KİLİTLİ
+              <span id="mission2StatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 flex items-center gap-1.5 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                GÖREV 2
               </span>
-              <span class="text-xs font-bold text-emerald-500/50">GÖREV 2</span>
+              <span class="text-xs font-bold text-cyan-400/70">ROBOT KOLU</span>
             </div>
 
             <!-- Title -->
-            <h3 class="font-display font-bold text-xl text-emerald-200/90">
+            <h3 class="font-display font-bold text-xl text-white group-hover:text-cyan-200 transition-colors">
               Robot Kolu ile Biyo-Örnek Toplama
             </h3>
 
             <!-- Description -->
-            <p class="mt-3 text-sm text-emerald-200/60 leading-relaxed">
-              6-eksenli robot manipülatör ile hassas flora ve fauna numunelerini steril tüplere aktarın.
+            <p class="mt-3 text-sm text-emerald-100/80 leading-relaxed">
+              Açı ve uzanma kaydırıcıları ile 6-eksenli robot kolunu yönlendirin, nadir bitki numunesini kıskaca alıp toplayın!
             </p>
 
             <div class="mt-5 flex flex-wrap gap-2 text-xs">
-              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-900/60 text-emerald-400/70">
-                🤖 Otonom Tutucu
+              <span class="px-3 py-1.5 rounded-xl bg-cyan-950/70 border border-cyan-700/50 text-cyan-200 flex items-center gap-1.5">
+                <span>🦾</span> Kinematik Kontrol
               </span>
-              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-900/60 text-emerald-400/70">
-                🌱 Tohum Toplama
+              <span class="px-3 py-1.5 rounded-xl bg-cyan-950/70 border border-cyan-700/50 text-cyan-200 flex items-center gap-1.5">
+                <span>🌱</span> Tohum & Biyo-Numune
               </span>
             </div>
           </div>
 
-          <div class="mt-6 pt-5 border-t border-emerald-900/40">
+          <div class="mt-6 pt-5 border-t border-emerald-800/50">
             <div class="flex items-center justify-between mb-3 text-xs">
-              <span class="text-emerald-400/60 font-medium">Tamamlama Ödülü:</span>
-              <span class="font-display font-bold text-amber-300/70 text-sm">⭐ +400 XP</span>
+              <span class="text-emerald-300/80 font-medium">Tamamlama Ödülü:</span>
+              <span class="font-display font-extrabold text-amber-300 text-sm flex items-center gap-1">
+                ⭐ +400 XP
+              </span>
             </div>
 
-            <button onclick="handleLockedMission(2)" class="w-full py-3.5 px-5 rounded-2xl bg-emerald-950/60 hover:bg-emerald-900/40 text-emerald-300/70 font-display font-bold text-xs uppercase tracking-wider border border-emerald-800/40 transition-all flex items-center justify-center gap-2 cursor-pointer">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <button id="startMission2Btn" onclick="scrollToRobotArmSim()" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 hover:from-cyan-400 hover:to-teal-300 text-emerald-950 font-display font-extrabold text-sm tracking-wide shadow-lg shadow-cyan-600/30 hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <span>Robot Kolunu Yönlendir</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-              <span>Görev Kilitli</span>
             </button>
           </div>
         </div>
 
-        <!-- MISSION 3 CARD (LOCKED) -->
-        <div id="mission3Card" class="relative group rounded-3xl glass-card border border-emerald-900/40 p-6 sm:p-7 opacity-75 hover:opacity-90 transition-all flex flex-col justify-between">
+        <!-- MISSION 3 CARD (ACTIVE / BIOCORE CIRCUIT SIM) -->
+        <div id="mission3Card" class="relative group rounded-3xl glass-card border-2 border-emerald-400/80 p-6 sm:p-7 shadow-xl shadow-emerald-950/50 glass-card-hover flex flex-col justify-between">
           <div>
             <!-- Status Pill -->
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300/60 border border-emerald-800/40 flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                KİLİTLİ
+              <span id="mission3StatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/50 flex items-center gap-1.5 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                GÖREV 3
               </span>
-              <span class="text-xs font-bold text-emerald-500/50">GÖREV 3</span>
+              <span class="text-xs font-bold text-emerald-400/70">BİOCORE DEVRE</span>
             </div>
 
             <!-- Title -->
-            <h3 class="font-display font-bold text-xl text-emerald-200/90">
-              Biocore Devre Kurulumu
+            <h3 class="font-display font-bold text-xl text-white group-hover:text-emerald-200 transition-colors">
+              Biocore Devre Kurulumu & Enerji Şebekesi
             </h3>
 
             <!-- Description -->
-            <p class="mt-3 text-sm text-emerald-200/60 leading-relaxed">
-              Hibrit enerji reaktörü ve biyolojik filtre devrelerinin CAN-bus haberleşme ağını entegre edin.
+            <p class="mt-3 text-sm text-emerald-100/80 leading-relaxed">
+              Hibrit enerji reaktörü voltajını ve 1Mbps CAN-bus veri şebekesini entegre edin, ekosistem temiz enerji şebekesini devreye alın!
             </p>
 
             <div class="mt-5 flex flex-wrap gap-2 text-xs">
-              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-900/60 text-emerald-400/70">
-                ⚡ Temiz Enerji
+              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/70 border border-emerald-700/50 text-emerald-200 flex items-center gap-1.5">
+                <span>⚡</span> PDB 12V Regülasyonu
               </span>
-              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-900/60 text-emerald-400/70">
-                📡 CAN-Bus İletişim
+              <span class="px-3 py-1.5 rounded-xl bg-emerald-950/70 border border-emerald-700/50 text-emerald-200 flex items-center gap-1.5">
+                <span>📡</span> CAN 1Mbps Veri Yolu
               </span>
             </div>
           </div>
 
-          <div class="mt-6 pt-5 border-t border-emerald-900/40">
+          <div class="mt-6 pt-5 border-t border-emerald-800/50">
             <div class="flex items-center justify-between mb-3 text-xs">
-              <span class="text-emerald-400/60 font-medium">Tamamlama Ödülü:</span>
-              <span class="font-display font-bold text-amber-300/70 text-sm">⭐ +600 XP</span>
+              <span class="text-emerald-300/80 font-medium">Tamamlama Ödülü:</span>
+              <span class="font-display font-extrabold text-amber-300 text-sm flex items-center gap-1">
+                ⭐ +600 XP
+              </span>
             </div>
 
-            <button onclick="handleLockedMission(3)" class="w-full py-3.5 px-5 rounded-2xl bg-emerald-950/60 hover:bg-emerald-900/40 text-emerald-300/70 font-display font-bold text-xs uppercase tracking-wider border border-emerald-800/40 transition-all flex items-center justify-center gap-2 cursor-pointer">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <button id="startMission3Btn" onclick="scrollToBiocoreSim()" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 hover:from-emerald-400 hover:to-cyan-300 text-emerald-950 font-display font-extrabold text-sm tracking-wide shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <span>Biocore Devresini Kur & Başlat</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-              <span>Görev Kilitli</span>
             </button>
           </div>
         </div>
@@ -487,7 +515,9 @@
       </div>
     </section>
 
-    <!-- INTERACTIVE SIMULATION AREA: MISSION 1 -->
+    <!-- ========================================================================= -->
+    <!-- INTERACTIVE SIMULATION AREA 1: SENSOR PLACEMENT & BALANCING              -->
+    <!-- ========================================================================= -->
     <section id="simulationArea" class="rounded-3xl glass-card p-6 sm:p-9 border-2 border-emerald-400/40 shadow-2xl transition-all">
       
       <!-- Section Header -->
@@ -503,7 +533,7 @@
             Görev 1: Sensör Yerleşimi ve Ekosistem Dengesi
           </h2>
           <p class="text-sm text-emerald-100/75 mt-1.5 max-w-2xl">
-            pH ve Nem sensörlerini stratejik noktalara yerleştirerek kurak ve asidik toprakları iyileştirin. Ekosistem kararlılığını <strong class="text-emerald-300 font-bold">%90 veya üzerine</strong> ulaştırarak başarı rozetinizi kazanın!
+            pH ve Nem sensörlerini stratejik noktalara yerleştirerek kurak ve asidik toprakları iyileştirin. Ekosistem kararlılığını <strong class="text-emerald-300 font-bold">%90 veya üzerine</strong> ulaştırın!
           </p>
         </div>
 
@@ -528,61 +558,60 @@
         <!-- LEFT COLUMN: SENSOR TOOLBOX & METRICS (5 cols) -->
         <div class="lg:col-span-5 space-y-6 flex flex-col justify-between">
           
-          <!-- Sensor Selection Palettes -->
+          <!-- Pure CSS/SVG Sensor Selection Palettes with Neon Cam Glow -->
           <div class="space-y-3.5">
             <h3 class="font-display text-base font-bold text-emerald-200 flex items-center gap-2">
-              <span>🧰</span> Sensör Çantanız
+              <span>🧰</span> Sensör Dağıtım Kiti
             </h3>
 
-            <!-- Tool 1: pH Sensor -->
-            <div id="selectPhTool" onclick="selectSensorTool('ph')" class="cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-teal-950/90 to-[#0c3128] border-2 border-cyan-400 shadow-lg shadow-cyan-950/50 transition-all hover:scale-[1.02] flex items-center justify-between group">
+            <!-- Tool 1: pH Sensor (Pure Neon Cyan CSS Card) -->
+            <div id="selectPhTool" onclick="selectSensorTool('ph')" class="cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-teal-950/90 to-[#0c3128] border-2 border-cyan-400 neon-glow-cyan transition-all hover:scale-[1.02] flex items-center justify-between group">
               <div class="flex items-center space-x-3.5">
-                <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform">
-                  <!-- Test Tube / pH Flask Icon -->
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Pure SVG/CSS Cyber-Glass Icon -->
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-cyan-500/25 to-teal-500/10 border-2 border-cyan-400/80 p-2.5 flex items-center justify-center text-cyan-300 shadow-md group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_#06b6d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
                 </div>
                 <div>
                   <div class="font-display font-bold text-white text-base flex items-center gap-2">
                     <span>pH Sensörü</span>
-                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-900/80 text-cyan-200 border border-cyan-500/40">Seçili</span>
+                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-900/80 text-cyan-200 border border-cyan-500/50 font-semibold shadow-sm">Seçili</span>
                   </div>
-                  <p class="text-xs text-emerald-200/70 mt-0.5">Toprak asitliğini dengeler (Hedef: 7.0 pH)</p>
+                  <p class="text-xs text-emerald-200/75 mt-0.5">Toprak asit/baz dengelemesi (Hedef: 7.0)</p>
                 </div>
               </div>
               <div class="text-right">
                 <span class="text-[10px] text-emerald-300/70 font-semibold block uppercase">Stok</span>
-                <span id="phCountBadge" class="font-display font-extrabold text-2xl text-cyan-300">3/3</span>
+                <span id="phCountBadge" class="font-display font-black text-2xl text-cyan-300 filter drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">3/3</span>
               </div>
             </div>
 
-            <!-- Tool 2: Humidity Sensor -->
-            <div id="selectHumidityTool" onclick="selectSensorTool('humidity')" class="cursor-pointer p-4 rounded-2xl bg-emerald-950/60 border-2 border-transparent hover:border-emerald-400/50 transition-all hover:scale-[1.02] flex items-center justify-between group">
+            <!-- Tool 2: Humidity Sensor (Pure Neon Emerald CSS Card) -->
+            <div id="selectHumidityTool" onclick="selectSensorTool('humidity')" class="cursor-pointer p-4 rounded-2xl bg-emerald-950/60 border-2 border-transparent hover:border-emerald-400/60 transition-all hover:scale-[1.02] flex items-center justify-between group">
               <div class="flex items-center space-x-3.5">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-300 group-hover:scale-110 transition-transform">
-                  <!-- Water Droplet Icon -->
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M12 2C6 8 4 12 4 15a8 8 0 0016 0c0-3-2-7-8-13z" />
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-teal-500/10 border-2 border-emerald-400/80 p-2.5 flex items-center justify-center text-emerald-300 shadow-md group-hover:scale-110 transition-transform">
+                  <svg class="w-8 h-8 filter drop-shadow-[0_0_8px_#10b981]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6 8 4 12 4 15a8 8 0 0016 0c0-3-2-7-8-13z" />
                   </svg>
                 </div>
                 <div>
                   <div class="font-display font-bold text-white text-base">
                     Nem Sensörü
                   </div>
-                  <p class="text-xs text-emerald-200/70 mt-0.5">Toprağı nemlendirir (Hedef: %65 Nem)</p>
+                  <p class="text-xs text-emerald-200/75 mt-0.5">Bölgesel nem optimizasyonu (Hedef: %65)</p>
                 </div>
               </div>
               <div class="text-right">
                 <span class="text-[10px] text-emerald-300/70 font-semibold block uppercase">Stok</span>
-                <span id="humidityCountBadge" class="font-display font-extrabold text-2xl text-emerald-300">3/3</span>
+                <span id="humidityCountBadge" class="font-display font-black text-2xl text-emerald-300">3/3</span>
               </div>
             </div>
 
             <!-- Tool 3: Eraser / Remove Tool -->
-            <div id="selectEraserTool" onclick="selectSensorTool('eraser')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 hover:border-rose-400/50 transition-all flex items-center justify-between text-emerald-300 hover:text-rose-300">
+            <div id="selectEraserTool" onclick="selectSensorTool('eraser')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 hover:border-rose-400/60 transition-all flex items-center justify-between text-emerald-300 hover:text-rose-300">
               <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-xl bg-rose-500/15 flex items-center justify-center text-rose-300">
+                <div class="w-9 h-9 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-300">
                   <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
@@ -612,7 +641,7 @@
                 <span id="currentPhValue" class="font-display font-bold text-cyan-300">5.2 pH (Asidik)</span>
               </div>
               <div class="h-3 w-full bg-emerald-950 rounded-full overflow-hidden p-0.5 border border-emerald-800/60">
-                <div id="phProgressBar" class="h-full bg-gradient-to-r from-rose-400 via-amber-300 to-cyan-400 rounded-full transition-all duration-500" style="width: 52%;"></div>
+                <div id="phProgressBar" class="h-full bg-gradient-to-r from-rose-400 via-amber-300 to-cyan-400 rounded-full transition-all duration-500 shadow-[0_0_10px_#06b6d4]" style="width: 52%;"></div>
               </div>
               <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium mt-1">
                 <span>4.0 (Asit)</span>
@@ -628,7 +657,7 @@
                 <span id="currentHumidityValue" class="font-display font-bold text-emerald-300">%32 (Kurak)</span>
               </div>
               <div class="h-3 w-full bg-emerald-950 rounded-full overflow-hidden p-0.5 border border-emerald-800/60">
-                <div id="humidityProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-teal-300 to-emerald-400 rounded-full transition-all duration-500" style="width: 32%;"></div>
+                <div id="humidityProgressBar" class="h-full bg-gradient-to-r from-amber-400 via-teal-300 to-emerald-400 rounded-full transition-all duration-500 shadow-[0_0_10px_#10b981]" style="width: 32%;"></div>
               </div>
               <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium mt-1">
                 <span>%10 (Kuru)</span>
@@ -636,16 +665,6 @@
                 <span>%100 (Doygun)</span>
               </div>
             </div>
-          </div>
-
-          <!-- Student Friendly Helper Tip -->
-          <div class="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-800/50 text-xs text-emerald-200/80 space-y-1.5">
-            <div class="font-display font-bold text-emerald-300 flex items-center gap-1.5">
-              <span>🌱</span> Nasıl Oynanır?
-            </div>
-            <p>1. <strong>pH</strong> veya <strong>Nem</strong> sensörünü seçin.</p>
-            <p>2. Griddeki kurak veya asidik parsellere dokunarak sensörü konuşlandırın.</p>
-            <p>3. Denge barını <strong>%90 veya %100</strong> seviyesine ulaştırdığınızda başarı rozetiniz açılır!</p>
           </div>
 
         </div>
@@ -661,7 +680,7 @@
                   <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
                   Ekosistem Sağlık ve Denge Göstergesi
                 </span>
-                <span class="text-xs text-emerald-200/70">Başarı ödülü için ekosistemi %90'ın üzerine çıkarın</span>
+                <span class="text-xs text-emerald-200/70">Başarı rozeti için ekosistemi %90'ın üzerine çıkarın</span>
               </div>
               <div class="flex items-baseline space-x-1.5 self-end sm:self-auto">
                 <span id="stabilityPercent" class="font-display font-black text-3xl sm:text-4xl text-amber-300 tracking-tight transition-all">24%</span>
@@ -732,20 +751,406 @@
 
     </section>
 
+    <!-- ========================================================================= -->
+    <!-- INTERACTIVE SIMULATION AREA 2: ROBOT ARM SPECIMEN COLLECTION              -->
+    <!-- ========================================================================= -->
+    <section id="robotArmSimSection" class="rounded-3xl glass-card p-6 sm:p-9 border-2 border-cyan-400/40 shadow-2xl transition-all">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-cyan-900/50">
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span class="font-display text-xs font-bold uppercase tracking-wider text-cyan-300">Kinematik Manipülatör Simülatörü</span>
+            <span class="text-cyan-700">•</span>
+            <span class="text-xs text-emerald-300 font-semibold">Sektör: Biyo-Toplama Alanı</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+            Görev 2: Robot Kolu ile Biyo-Örnek Toplama
+          </h2>
+          <p class="text-sm text-emerald-100/75 mt-1.5 max-w-2xl">
+            Aşağıdaki <strong>Açı (Omuz)</strong> ve <strong>Uzanma (Dirsek)</strong> kaydırıcılarını kullanarak robot tutucuyu bitki örneğine (<span class="text-emerald-300 font-bold">25 mm içine</span>) hizalayın ve <strong>"Numuneyi Yakala"</strong> butonuyla steril tüpe aktarın!
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-cyan-950/90 text-cyan-300 border border-cyan-500/40 shadow-sm flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>Ödül: +400 XP</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Robot Arm Interface -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+
+        <!-- Controls & Telemetry Column (5 cols) -->
+        <div class="lg:col-span-5 space-y-6 flex flex-col justify-between">
+          
+          <!-- Sliders Box -->
+          <div class="p-6 rounded-3xl bg-emerald-950/70 border border-cyan-500/30 space-y-5 shadow-inner">
+            <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
+              <span>🦾</span> Robot Kolu Eklem Kontrolleri
+            </h3>
+
+            <!-- Slider 1: Shoulder Angle -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-semibold">
+                <span class="text-emerald-200">1. Eklem (Omuz Açısı - Angle):</span>
+                <span id="angleValueDisplay" class="font-display font-extrabold text-cyan-300 text-sm bg-cyan-950/80 px-2.5 py-0.5 rounded-lg border border-cyan-500/40">
+                  40°
+                </span>
+              </div>
+              <input id="shoulderAngleSlider" type="range" min="0" max="90" value="40" class="w-full" oninput="updateRobotArmFromSliders()">
+              <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium">
+                <span>0° (Yere Yakın)</span>
+                <span>45° (Optimal)</span>
+                <span>90° (Dikey)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Extension / Reach -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-semibold">
+                <span class="text-emerald-200">2. Eklem (Kol Uzanımı - Extension):</span>
+                <span id="extensionValueDisplay" class="font-display font-extrabold text-emerald-300 text-sm bg-emerald-950/80 px-2.5 py-0.5 rounded-lg border border-emerald-500/40">
+                  180 mm
+                </span>
+              </div>
+              <input id="elbowExtensionSlider" type="range" min="110" max="290" value="180" class="w-full" oninput="updateRobotArmFromSliders()">
+              <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium">
+                <span>110 mm (Geri Çekilmiş)</span>
+                <span>200 mm</span>
+                <span>290 mm (Tam Uzanma)</span>
+              </div>
+            </div>
+
+            <!-- Gripper State Display -->
+            <div class="pt-3 border-t border-emerald-800/50 flex items-center justify-between text-xs font-semibold">
+              <span class="text-emerald-300/80">Kıskaç Tutucu Modu:</span>
+              <span id="gripperStatusLabel" class="px-3 py-1 rounded-full bg-slate-900/80 text-cyan-300 border border-cyan-400/40 text-xs">
+                Açık (Menzil Bekleniyor)
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Real-Time Distance & Alignment HUD -->
+          <div class="p-5 rounded-3xl bg-gradient-to-br from-[#06241b] via-[#083024] to-[#06241b] border border-cyan-500/40 space-y-3 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="font-display text-xs font-extrabold uppercase tracking-wider text-cyan-300">
+                Hedef Telemetrisi & Mesafe
+              </span>
+              <span id="alignmentBadge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                Hizalanıyor...
+              </span>
+            </div>
+
+            <div class="flex items-baseline justify-between">
+              <span class="text-xs text-emerald-200/80">Bitki Örneğine Kalan Mesafe:</span>
+              <div class="flex items-baseline gap-1">
+                <span id="targetDistanceDisplay" class="font-display font-black text-2xl text-amber-300">54</span>
+                <span class="text-xs font-bold text-emerald-400">mm</span>
+              </div>
+            </div>
+
+            <!-- Distance bar -->
+            <div class="h-2.5 w-full bg-emerald-950 rounded-full overflow-hidden p-0.5 border border-emerald-800/60">
+              <div id="distanceMeterBar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full transition-all duration-200" style="width: 45%;"></div>
+            </div>
+            <p class="text-[11px] text-emerald-300/70 font-medium">
+              💡 İpucu: Mesafeyi <span class="text-emerald-300 font-bold">25 mm altına</span> indirdiğinizde hedef kilitlenecektir.
+            </p>
+          </div>
+
+          <!-- Grip & Collect Action Button -->
+          <button id="collectSampleBtn" onclick="attemptCollectSample()" class="w-full py-4 px-6 rounded-2xl bg-emerald-950/70 text-emerald-400/50 border border-emerald-800/50 font-display font-extrabold text-sm tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-not-allowed" disabled>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span id="collectBtnText">Hedefe Yaklaşın (Menzil Dışı)</span>
+          </button>
+
+        </div>
+
+        <!-- Interactive 2D Robot Arm Canvas Column (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+          
+          <div class="relative w-full rounded-3xl bg-[#03130d] border-2 border-cyan-500/30 overflow-hidden shadow-2xl p-2 sm:p-4">
+            
+            <!-- Canvas HUD Badges -->
+            <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-950/90 text-cyan-300 border border-cyan-500/40 backdrop-blur-md shadow-sm">
+                CAN-Bus Kinematik v2.6
+              </span>
+              <span id="lockStatusPill" class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-950/80 text-amber-300 border border-amber-500/40 backdrop-blur-md hidden">
+                HEDEF MENZİLDE
+              </span>
+            </div>
+
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-2">
+              <button onclick="autoAlignRobotArm()" class="px-3 py-1 rounded-xl text-xs font-bold bg-teal-900/80 hover:bg-teal-800 text-teal-200 border border-teal-500/50 backdrop-blur-md transition-all cursor-pointer">
+                🎯 Otomatik Hizala
+              </button>
+            </div>
+
+            <!-- The Robot Arm Canvas -->
+            <canvas id="robotArmCanvas" class="w-full h-80 sm:h-96 rounded-2xl block bg-radial from-[#08281e] via-[#041610] to-[#020b08]"></canvas>
+
+            <!-- Bottom Pedestal Footnote -->
+            <div class="flex items-center justify-between mt-2 px-2 text-[11px] text-emerald-400/70 font-medium">
+              <span>Robot Tabanı: X: 110 mm, Y: 0 mm</span>
+              <span>Hedef Numune: Nadir Biyo-Flora Tohumu 🌱</span>
+            </div>
+
+          </div>
+
+          <!-- Success Alert Box (Hidden until collected) -->
+          <div id="sampleCollectedBanner" class="p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-[#073022] to-teal-950 border border-emerald-400/60 text-emerald-200 text-xs sm:text-sm font-semibold flex items-center justify-between hidden shadow-lg shadow-emerald-950">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🏆</span>
+              <div>
+                <div class="font-display font-extrabold text-white text-base">Görev 2 Tamamlandı!</div>
+                <div class="text-xs text-emerald-300/80">Biyo-örnek numunesi steril tüpe başarıyla aktarıldı. (+400 XP)</div>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-400">
+              TAMAMLANDI ✓
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- INTERACTIVE SIMULATION AREA 3: BIOCORE CIRCUIT & CLEAN ENERGY GRID        -->
+    <!-- ========================================================================= -->
+    <section id="biocoreSimSection" class="rounded-3xl glass-card p-6 sm:p-9 border-2 border-emerald-400/40 shadow-2xl transition-all">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-emerald-800/40">
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-display text-xs font-bold uppercase tracking-wider text-emerald-300">Elektrik & Enerji Laboratuvarı</span>
+            <span class="text-emerald-700">•</span>
+            <span class="text-xs text-cyan-300 font-semibold">Biocore Reaktör Odası</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+            Görev 3: Biocore Devre Kurulumu & Temiz Enerji Şebekesi
+          </h2>
+          <p class="text-sm text-emerald-100/75 mt-1.5 max-w-2xl">
+            PDB güç dağıtımını, 120Ω sonlandırma direncini bağlayın ve CAN-bus haberleşme frekansını <span class="text-emerald-300 font-bold">1000 kbps (1 Mbps) FRC standardına</span> senkronize ederek reaktörü enerjilendirin!
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-500/40 shadow-sm flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Büyük Ödül: +600 XP</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Biocore Circuit Grid Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+
+        <!-- Left Column: Circuit Switches & Calibration Sliders (5 cols) -->
+        <div class="lg:col-span-5 space-y-6 flex flex-col justify-between">
+          
+          <!-- 4 Critical Circuit Channels -->
+          <div class="space-y-3">
+            <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
+              <span>⚡</span> 4 Kritik Devre Bağlantı Hattı
+            </h3>
+
+            <!-- Channel 1: PDB 12V Power Line -->
+            <div id="chanPowerLine" onclick="toggleCircuitChannel('power')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/60 border-2 border-emerald-500/40 hover:border-emerald-400 transition-all flex items-center justify-between group">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-300">
+                  <span class="text-base">🔋</span>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-white text-sm">12V Ana Güç Dağıtım Hattı</div>
+                  <div class="text-[11px] text-emerald-300/70">PDB / Sigorta & Akü Bağlantısı</div>
+                </div>
+              </div>
+              <span id="chanPowerBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+                BAĞLI ✓
+              </span>
+            </div>
+
+            <!-- Channel 2: CAN-Bus Loop -->
+            <div id="chanCanLine" onclick="toggleCircuitChannel('can')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/60 border-2 border-cyan-500/40 hover:border-cyan-400 transition-all flex items-center justify-between group">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300">
+                  <span class="text-base">📡</span>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-white text-sm">CAN-Bus 1Mbps Veri Döngüsü</div>
+                  <div class="text-[11px] text-emerald-300/70">CAN-High & CAN-Low Diferansiyel Hat</div>
+                </div>
+              </div>
+              <span id="chanCanBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+                BAĞLI ✓
+              </span>
+            </div>
+
+            <!-- Channel 3: 120 Ohm Terminating Resistor -->
+            <div id="chanResistorLine" onclick="toggleCircuitChannel('resistor')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border-2 border-slate-700/60 hover:border-emerald-400/60 transition-all flex items-center justify-between group">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/50 flex items-center justify-center text-purple-300">
+                  <span class="text-base">🧲</span>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-white text-sm">120Ω Sonlandırma Direnci</div>
+                  <div class="text-[11px] text-emerald-300/70">Sinyal Yansımasını Engelleyici Terminasyon</div>
+                </div>
+              </div>
+              <span id="chanResistorBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-900 text-slate-400 border border-slate-700">
+                AÇIK DEVRE ✗
+              </span>
+            </div>
+
+            <!-- Channel 4: Bio-Filtration Relay -->
+            <div id="chanFilterLine" onclick="toggleCircuitChannel('filter')" class="cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border-2 border-slate-700/60 hover:border-emerald-400/60 transition-all flex items-center justify-between group">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-400/50 flex items-center justify-center text-teal-300">
+                  <span class="text-base">🌿</span>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-white text-sm">Biyo-Filtre Sirkülasyon Rölesi</div>
+                  <div class="text-[11px] text-emerald-300/70">Temiz Oksijen & Sıvı Pompa Kontrolü</div>
+                </div>
+              </div>
+              <span id="chanFilterBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-900 text-slate-400 border border-slate-700">
+                AÇIK DEVRE ✗
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Voltage & CAN Frequency Sliders -->
+          <div class="p-5 rounded-3xl bg-emerald-950/70 border border-emerald-600/30 space-y-4 shadow-inner">
+            <h4 class="font-display text-xs font-bold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
+              <span>🎛️</span> Voltaj & Frekans Kalibrasyonu
+            </h4>
+
+            <!-- Voltage Slider -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs font-semibold">
+                <span class="text-emerald-200">Reaktör Voltajı (Hedef: 12.0 - 12.6V):</span>
+                <span id="voltageDisplay" class="font-display font-extrabold text-amber-300 text-sm bg-emerald-950 px-2.5 py-0.5 rounded-lg border border-amber-400/40">
+                  11.2 V
+                </span>
+              </div>
+              <input id="voltageSlider" type="range" min="90" max="150" value="112" class="w-full" oninput="updateBiocoreCircuit()">
+              <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium">
+                <span>9.0V (Düşük)</span>
+                <span class="text-emerald-300 font-bold">12.4V (Nominal)</span>
+                <span>15.0V (Aşırı)</span>
+              </div>
+            </div>
+
+            <!-- CAN Baud Rate Slider -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs font-semibold">
+                <span class="text-emerald-200">CAN Veri Hızı (Hedef: 1000 kbps / 1Mbps):</span>
+                <span id="baudrateDisplay" class="font-display font-extrabold text-cyan-300 text-sm bg-cyan-950 px-2.5 py-0.5 rounded-lg border border-cyan-400/40">
+                  500 kbps
+                </span>
+              </div>
+              <input id="baudrateSlider" type="range" min="250" max="1000" step="250" value="500" class="w-full" oninput="updateBiocoreCircuit()">
+              <div class="flex justify-between text-[10px] text-emerald-400/60 font-medium">
+                <span>250 kbps</span>
+                <span>500 kbps</span>
+                <span class="text-cyan-300 font-bold">1000 kbps (1 Mbps FRC)</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Activate Biocore Power Grid Button -->
+          <button id="activateBiocoreBtn" onclick="activateBiocoreGrid()" class="w-full py-4 px-6 rounded-2xl bg-emerald-950/70 text-emerald-400/50 border border-emerald-800/50 font-display font-extrabold text-sm tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-not-allowed" disabled>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span id="biocoreBtnText">Devre Hatlarını Tamamlayın (%40)</span>
+          </button>
+
+        </div>
+
+        <!-- Right Column: Interactive Circuit Motherboard Canvas (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+          
+          <div class="relative w-full rounded-3xl bg-[#02100a] border-2 border-emerald-500/40 overflow-hidden shadow-2xl p-2 sm:p-4">
+            
+            <!-- Circuit Header HUD -->
+            <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-950/90 text-emerald-300 border border-emerald-500/40 backdrop-blur-md shadow-sm">
+                Biocore PCB Motherboard v3.2
+              </span>
+              <span id="biocorePowerPill" class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-950/80 text-amber-300 border border-amber-500/40 backdrop-blur-md">
+                GÜÇ: %40
+              </span>
+            </div>
+
+            <div class="absolute top-4 right-4 z-10 flex items-center gap-2">
+              <button onclick="autoTuneBiocoreCircuit()" class="px-3 py-1 rounded-xl text-xs font-bold bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 border border-emerald-500/50 backdrop-blur-md transition-all cursor-pointer">
+                ⚡ Hızlı Kalibrasyon
+              </button>
+            </div>
+
+            <!-- Circuit Canvas -->
+            <canvas id="biocoreCanvas" class="w-full h-80 sm:h-96 rounded-2xl block bg-radial from-[#07261b] via-[#03140d] to-[#010805]"></canvas>
+
+            <!-- Bottom Telemetry Bar -->
+            <div class="flex items-center justify-between mt-2 px-2 text-[11px] text-emerald-400/70 font-medium">
+              <span>Şebeke Durumu: <strong id="gridStatusText" class="text-amber-300">Dengesiz / Hatlar Eksik</strong></span>
+              <span>CAN Bus: <strong id="canHealthText" class="text-cyan-300">500 kbps (Senkron Dışı)</strong></span>
+            </div>
+
+          </div>
+
+          <!-- Mission 3 Completed Celebration Banner -->
+          <div id="biocoreCompleteBanner" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-[#073322] to-teal-950 border-2 border-emerald-400 text-emerald-200 text-xs sm:text-sm font-semibold flex items-center justify-between hidden shadow-2xl shadow-emerald-950">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">🌟</span>
+              <div>
+                <div class="font-display font-black text-white text-base sm:text-lg">TÜM ECOQUEST GÖREVLERİ TAMAMLANDI!</div>
+                <div class="text-xs text-emerald-300 font-medium">Biocore reaktörü %100 temiz enerji üretiyor! Yeni Ünvan: <strong>Grand Bio-Robotics Champion 🏆</strong> (+600 XP)</div>
+              </div>
+            </div>
+            <span class="px-3.5 py-1.5 rounded-full bg-emerald-500 text-emerald-950 font-black text-xs uppercase shadow-md">
+              ŞAMPİYON ✓
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
     <!-- SECTION: BAŞARI ROZETLERİ (ACHIEVEMENT BADGES) -->
     <section class="rounded-3xl glass-card border border-emerald-500/25 p-6 sm:p-8">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div class="flex items-center space-x-4">
-          <div id="badgePreviewIcon" class="w-16 h-16 rounded-2xl bg-emerald-950/80 border border-emerald-700/50 flex items-center justify-center text-emerald-600 transition-all shadow-md">
-            <!-- Trophy Badge Silhouette -->
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
+          
+          <!-- Pure CSS/Canvas Neon Shield Preview -->
+          <div id="badgePreviewIcon" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-950 to-teal-950 border border-emerald-600/50 p-2 flex items-center justify-center text-emerald-400 transition-all shadow-md">
+            <svg class="w-10 h-10 text-emerald-400 filter drop-shadow-[0_0_8px_#10b981]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
+
           <div>
             <div class="text-xs font-bold uppercase tracking-wider text-emerald-400">BAŞARI ROZETLERİ</div>
             <h4 id="badgePreviewTitle" class="font-display font-extrabold text-xl text-white mt-0.5">Bio-Robotics Master</h4>
-            <p id="badgePreviewDesc" class="text-xs text-emerald-200/70 mt-1">Görev 1'i tamamlayarak TEAM LYRON 10953 ekibinin en prestijli biyo-sensör madalyasını kazanın.</p>
+            <p id="badgePreviewDesc" class="text-xs text-emerald-200/70 mt-1">Görev 1 ve Görev 2'yi tamamlayarak TEAM LYRON 10953 ekibinin en prestijli biyo-sensör madalyasını kazanın.</p>
           </div>
         </div>
 
@@ -761,7 +1166,7 @@
   </main>
 
   <!-- FOOTER (TEAM LYRON 10953) -->
-  <footer class="mt-12 border-t border-emerald-800/40 bg-[#03110c] py-8 text-center text-xs text-emerald-300/60 font-medium">
+  <footer class="mt-12 border-t border-emerald-800/40 bg-[#020d09] py-8 text-center text-xs text-emerald-300/60 font-medium">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="font-display font-extrabold text-emerald-400 text-sm">TEAM LYRON 10953</span>
@@ -781,26 +1186,31 @@
     </div>
   </div>
 
-  <!-- COMPLETION MODAL WINDOW (SUCCESS POPUP) -->
-  <div id="completionModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+  <!-- ========================================================================= -->
+  <!-- DYNAMIC COMPLETION MODAL WINDOW WITH CSS/CANVAS BADGE ANIMATION           -->
+  <!-- ========================================================================= -->
+  <div id="completionModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg hidden opacity-0 transition-opacity duration-300">
     <div class="relative w-full max-w-md modal-bounce rounded-3xl bg-gradient-to-b from-[#092c21] via-[#08221a] to-[#041510] border-2 border-emerald-400 p-7 sm:p-9 text-center shadow-2xl shadow-emerald-950">
       
       <!-- Top Ribbon -->
       <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 px-5 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-emerald-950 font-display font-black text-xs uppercase tracking-wider shadow-lg">
-        GÖREV TAMAMLANDI! 🎉
+        GÖREV 1 TAMAMLANDI! 🎉
       </div>
 
-      <!-- GLOWING BADGE GRAPHIC: BIO-ROBOTICS MASTER -->
-      <div class="relative my-4 flex justify-center">
-        <!-- Ambient Warm Glow -->
-        <div class="absolute inset-0 m-auto w-36 h-36 bg-emerald-400/30 rounded-full blur-2xl animate-pulse"></div>
-        
-        <!-- Trophy Shield -->
-        <div class="relative w-32 h-32 rounded-3xl bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 p-1.5 shadow-2xl animate-float-gentle">
-          <div class="w-full h-full rounded-[22px] bg-[#061d16] flex flex-col items-center justify-center p-2 border border-emerald-300/40">
-            <!-- Leaf & Shield SVG -->
-            <svg class="w-14 h-14 text-emerald-300 glow-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      <!-- DYNAMIC CSS & CANVAS EMBLEM / BADGE ANIMATION -->
+      <div class="relative my-4 flex items-center justify-center">
+        <!-- Background Radiant Halo Canvas -->
+        <canvas id="modalBadgeHaloCanvas" width="220" height="220" class="absolute pointer-events-none"></canvas>
+
+        <!-- 3D Layered Glowing Heraldic Shield Badge -->
+        <div class="relative w-36 h-36 rounded-3xl bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 p-1.5 shadow-2xl animate-float-gentle z-10">
+          <div class="w-full h-full rounded-[22px] bg-gradient-to-b from-[#072a1e] to-[#03130d] flex flex-col items-center justify-center p-3 border border-emerald-300/40 relative overflow-hidden">
+            <!-- Animated shimmer ray -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 animate-spin-slow pointer-events-none"></div>
+
+            <!-- Center Shield SVG with Glow -->
+            <svg class="w-14 h-14 text-emerald-300 filter drop-shadow-[0_0_12px_rgba(52,211,153,0.9)] animate-glow-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
             <span class="font-display font-black text-[11px] text-teal-200 tracking-wider mt-1">TEAM LYRON 10953</span>
             <div class="flex text-amber-300 text-xs gap-1 mt-0.5">⭐⭐⭐</div>
@@ -813,12 +1223,12 @@
         Bio-Robotics Master
       </h3>
       <p class="text-emerald-300 font-bold text-sm mt-1">
-        Yeni Başarı Rozeti ve Ünvanı Kazanıldı!
+        Dinamik Başarı Rozeti ve Ünvanı Açıldı!
       </p>
 
       <!-- Friendly Narrative -->
       <p class="mt-3 text-sm text-emerald-100/80 leading-relaxed font-normal">
-        Harika bir iş çıkardınız! <strong>TEAM LYRON 10953</strong> ekibi adına Biyo-Kubbe sahasındaki toprak pH ve nem dengesi başarıyla %100 stabilize edildi. Doğa yeniden hayat buluyor!
+        Harika bir iş çıkardınız! <strong>TEAM LYRON 10953</strong> ekibi adına Biyo-Kubbe sahasındaki toprak pH ve nem dengesi başarıyla %100 stabilize edildi.
       </p>
 
       <!-- Award Summary Card -->
@@ -834,10 +1244,10 @@
         </div>
       </div>
 
-      <!-- Next Unlock Card -->
+      <!-- Next Mission Alert -->
       <div class="mb-6 p-3 rounded-2xl bg-teal-950/60 border border-teal-500/40 text-xs font-semibold text-teal-200 flex items-center justify-center gap-2">
-        <span>🔓</span>
-        <span>Görev 2 (Robot Kolu ile Biyo-Örnek Toplama) Kilidi Açıldı!</span>
+        <span>🦾</span>
+        <span>Görev 2: Robot Kolu ile Biyo-Örnek Toplama Erişilebilir!</span>
       </div>
 
       <!-- Claim Reward Button -->
@@ -848,13 +1258,13 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT CONTROLLER & GAME ENGINES -->
   <script>
     /* ==========================================================================
-       FRC EcoQuest - TEAM LYRON 10953 State & Controller Logic
+       FRC EcoQuest - TEAM LYRON 10953 Controller
        ========================================================================== */
 
-    // Sound FX Synthesizer via Web Audio API (Nature & Game Tones)
+    // Sound FX Synthesizer via Web Audio API
     class SoundEngine {
       constructor() {
         this.enabled = true;
@@ -892,8 +1302,8 @@
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(523.25, now); // C5
-          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.14); // G5
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.14);
           gain.gain.setValueAtTime(0.12, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
           osc.connect(gain);
@@ -906,12 +1316,39 @@
         if (!this.enabled) return;
         this.playBlip(320, 0.1);
       }
+      playRobotMove() {
+        if (!this.enabled) return;
+        this.playBlip(280, 0.04);
+      }
+      playCollect() {
+        if (!this.enabled) return;
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const notes = [440, 554.37, 659.25, 880];
+          notes.forEach((freq, idx) => {
+            setTimeout(() => {
+              const now = this.ctx.currentTime;
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, now);
+              gain.gain.setValueAtTime(0.16, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start();
+              osc.stop(now + 0.28);
+            }, idx * 90);
+          });
+        } catch (e) {}
+      }
       playVictory() {
         if (!this.enabled) return;
         try {
           this.init();
           if (!this.ctx) return;
-          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 (Bright cheerful arpeggio)
+          const notes = [523.25, 659.25, 783.99, 1046.50];
           notes.forEach((freq, idx) => {
             setTimeout(() => {
               const now = this.ctx.currentTime;
@@ -938,21 +1375,20 @@
       xp: 0,
       userLevel: 'Eco-Rookie',
       mission1Completed: false,
-      mission2Unlocked: false,
-      activeTool: 'ph', // 'ph', 'humidity', 'eraser'
+      mission2Completed: false,
+      activeTool: 'ph',
       maxPhSensors: 3,
       maxHumiditySensors: 3,
-      placedSensors: {}, // key: "r_c", value: { type: 'ph' | 'humidity' }
+      placedSensors: {},
       gridSize: 5,
       cells: []
     };
 
-    // Initialize 5x5 Grid baseline data with organic nature conditions
+    /* ==========================================================================
+       GÖREV 1: 5x5 BİYO-GRID SİMÜLASYONU
+       ========================================================================== */
     function initGridData() {
       AppState.cells = [];
-      // Acid hotspots: (0,1), (1,3), (4,2)
-      // Drought dry spots: (2,0), (3,4), (1,1)
-      // Critical combo spot: (3,2)
       for (let r = 0; r < AppState.gridSize; r++) {
         for (let c = 0; c < AppState.gridSize; c++) {
           let basePh = 6.4;
@@ -984,7 +1420,6 @@
       }
     }
 
-    // Render Grid DOM with Soft Nature Aesthetics
     function renderGrid() {
       const gridContainer = document.getElementById('simulationGrid');
       gridContainer.innerHTML = '';
@@ -998,12 +1433,11 @@
         tile.className = `relative rounded-2xl border flex flex-col items-center justify-between p-2 cursor-pointer transition-all duration-300 select-none group shadow-sm`;
         tile.dataset.key = key;
 
-        // Visual styling based on placed sensor or cell condition
         if (placed) {
           if (placed.type === 'ph') {
-            tile.className += ` bg-gradient-to-br from-teal-900/90 to-[#0c382e] border-cyan-400 shadow-md shadow-cyan-900/40`;
+            tile.className += ` bg-gradient-to-br from-teal-900/90 to-[#0c382e] border-cyan-400 shadow-md shadow-cyan-900/50`;
           } else {
-            tile.className += ` bg-gradient-to-br from-emerald-900/90 to-[#0a3522] border-emerald-400 shadow-md shadow-emerald-900/40`;
+            tile.className += ` bg-gradient-to-br from-emerald-900/90 to-[#0a3522] border-emerald-400 shadow-md shadow-emerald-900/50`;
           }
         } else {
           if (cell.type === 'acidic') {
@@ -1017,7 +1451,6 @@
           }
         }
 
-        // Inner HTML for the tile
         let contentHtml = `
           <div class="w-full flex justify-between items-center text-[10px] font-display text-emerald-400/80 font-bold">
             <span>${coordName}</span>
@@ -1030,24 +1463,24 @@
         if (placed) {
           if (placed.type === 'ph') {
             contentHtml += `
-              <div class="sensor-pop-in relative flex flex-col items-center my-auto">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/25 border border-cyan-300 flex items-center justify-center text-cyan-200 shadow-sm">
+              <div class="relative flex flex-col items-center my-auto">
+                <div class="w-9 h-9 rounded-xl bg-cyan-500/25 border-2 border-cyan-300 flex items-center justify-center text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.6)]">
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
                 </div>
-                <span class="text-[9px] font-display text-cyan-200 font-bold mt-1">pH SENSÖRÜ</span>
+                <span class="text-[9px] font-display text-cyan-200 font-extrabold mt-1">pH PROBE</span>
               </div>
             `;
           } else {
             contentHtml += `
-              <div class="sensor-pop-in relative flex flex-col items-center my-auto">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/25 border border-emerald-300 flex items-center justify-center text-emerald-200 shadow-sm">
+              <div class="relative flex flex-col items-center my-auto">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/25 border-2 border-emerald-300 flex items-center justify-center text-emerald-200 shadow-[0_0_12px_rgba(16,185,129,0.6)]">
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 2C6 8 4 12 4 15a8 8 0 0016 0c0-3-2-7-8-13z" />
                   </svg>
                 </div>
-                <span class="text-[9px] font-display text-emerald-200 font-bold mt-1">NEM SENSÖRÜ</span>
+                <span class="text-[9px] font-display text-emerald-200 font-extrabold mt-1">NEM SENSÖRÜ</span>
               </div>
             `;
           }
@@ -1059,7 +1492,6 @@
           `;
         }
 
-        // Mini telemetry footer for tile
         contentHtml += `
           <div class="w-full flex justify-between items-center text-[9px] font-semibold text-emerald-300/80">
             <span class="${cell.currentPh < 6.0 ? 'text-rose-300' : 'text-cyan-300'}">${cell.currentPh.toFixed(1)}</span>
@@ -1073,7 +1505,6 @@
       });
     }
 
-    // Handle User Click on Tile
     function handleTileClick(r, c) {
       const key = `${r}_${c}`;
       const existing = AppState.placedSensors[key];
@@ -1124,15 +1555,12 @@
       recalculateEcosystem();
     }
 
-    // Calculate Ecosystem Balance & Stability
     function recalculateEcosystem() {
-      // 1. Reset values to baseline
       AppState.cells.forEach(cell => {
         cell.currentPh = cell.basePh;
         cell.currentHumidity = cell.baseHumidity;
       });
 
-      // 2. Apply AoE influence
       Object.entries(AppState.placedSensors).forEach(([key, sensor]) => {
         const [rStr, cStr] = key.split('_');
         const sr = parseInt(rStr);
@@ -1141,26 +1569,17 @@
         AppState.cells.forEach(cell => {
           const dist = Math.abs(cell.r - sr) + Math.abs(cell.c - sc);
           if (sensor.type === 'ph') {
-            if (dist === 0) {
-              cell.currentPh = Math.min(7.4, cell.currentPh + 2.5);
-            } else if (dist === 1) {
-              cell.currentPh = Math.min(7.2, cell.currentPh + 1.4);
-            } else if (dist === 2) {
-              cell.currentPh = Math.min(7.0, cell.currentPh + 0.6);
-            }
+            if (dist === 0) cell.currentPh = Math.min(7.4, cell.currentPh + 2.5);
+            else if (dist === 1) cell.currentPh = Math.min(7.2, cell.currentPh + 1.4);
+            else if (dist === 2) cell.currentPh = Math.min(7.0, cell.currentPh + 0.6);
           } else if (sensor.type === 'humidity') {
-            if (dist === 0) {
-              cell.currentHumidity = Math.min(75, cell.currentHumidity + 40);
-            } else if (dist === 1) {
-              cell.currentHumidity = Math.min(70, cell.currentHumidity + 22);
-            } else if (dist === 2) {
-              cell.currentHumidity = Math.min(68, cell.currentHumidity + 10);
-            }
+            if (dist === 0) cell.currentHumidity = Math.min(75, cell.currentHumidity + 40);
+            else if (dist === 1) cell.currentHumidity = Math.min(70, cell.currentHumidity + 22);
+            else if (dist === 2) cell.currentHumidity = Math.min(68, cell.currentHumidity + 10);
           }
         });
       });
 
-      // 3. Compute overall score
       let totalPh = 0;
       let totalHum = 0;
       let cellScoreSum = 0;
@@ -1168,10 +1587,8 @@
       AppState.cells.forEach(cell => {
         totalPh += cell.currentPh;
         totalHum += cell.currentHumidity;
-
         const phDelta = Math.abs(cell.currentPh - 7.0);
         const humDelta = Math.abs(cell.currentHumidity - 65);
-
         const phScore = Math.max(0, 1 - (phDelta / 3.0));
         const humScore = Math.max(0, 1 - (humDelta / 45.0));
         cellScoreSum += (phScore * 0.5 + humScore * 0.5);
@@ -1179,7 +1596,6 @@
 
       const avgPh = totalPh / AppState.cells.length;
       const avgHum = totalHum / AppState.cells.length;
-      
       let stability = Math.round((cellScoreSum / AppState.cells.length) * 100);
       stability = Math.max(20, Math.min(100, stability));
 
@@ -1193,7 +1609,6 @@
       }
     }
 
-    // Update UI Elements
     function updateUI(avgPh, avgHum, stability) {
       const phUsed = Object.values(AppState.placedSensors).filter(s => s.type === 'ph').length;
       const humUsed = Object.values(AppState.placedSensors).filter(s => s.type === 'humidity').length;
@@ -1201,7 +1616,6 @@
       document.getElementById('phCountBadge').innerText = `${AppState.maxPhSensors - phUsed}/${AppState.maxPhSensors}`;
       document.getElementById('humidityCountBadge').innerText = `${AppState.maxHumiditySensors - humUsed}/${AppState.maxHumiditySensors}`;
 
-      // Stability Bar
       const stabilityPercentEl = document.getElementById('stabilityPercent');
       const stabilityProgressBar = document.getElementById('stabilityProgressBar');
       stabilityPercentEl.innerText = `${stability}%`;
@@ -1222,7 +1636,6 @@
         document.getElementById('systemHealthBadge').className = "font-display font-bold text-amber-300 text-base";
       }
 
-      // pH UI
       const currentPhValueEl = document.getElementById('currentPhValue');
       const phProgressBar = document.getElementById('phProgressBar');
       let phStatus = "Dengeli";
@@ -1233,7 +1646,6 @@
       currentPhValueEl.innerText = `${avgPh.toFixed(1)} pH (${phStatus})`;
       phProgressBar.style.width = `${Math.min(100, (avgPh / 10) * 100)}%`;
 
-      // Humidity UI
       const currentHumidityValueEl = document.getElementById('currentHumidityValue');
       const humidityProgressBar = document.getElementById('humidityProgressBar');
       let humStatus = "Optimal";
@@ -1243,7 +1655,6 @@
       currentHumidityValueEl.innerText = `%${Math.round(avgHum)} (${humStatus})`;
       humidityProgressBar.style.width = `${Math.min(100, avgHum)}%`;
 
-      // Zone State Tag
       const zoneStateLabel = document.getElementById('zoneStateLabel');
       if (stability >= 90) {
         zoneStateLabel.innerText = "Ekosistem Kararlı ✓";
@@ -1254,7 +1665,6 @@
       }
     }
 
-    // Enable / Disable Final Validation Button
     function enableValidateButton(enabled, stability) {
       const btn = document.getElementById('validateMissionBtn');
       const text = document.getElementById('validateBtnText');
@@ -1270,7 +1680,6 @@
       }
     }
 
-    // Tool Selection Switcher
     function selectSensorTool(tool) {
       AppState.activeTool = tool;
       sound.playBlip(520, 0.05);
@@ -1279,21 +1688,19 @@
       const humBox = document.getElementById('selectHumidityTool');
       const eraserBox = document.getElementById('selectEraserTool');
 
-      // reset default classes
       phBox.className = "cursor-pointer p-4 rounded-2xl bg-emerald-950/60 border-2 border-transparent hover:border-cyan-400/50 transition-all hover:scale-[1.02] flex items-center justify-between group";
       humBox.className = "cursor-pointer p-4 rounded-2xl bg-emerald-950/60 border-2 border-transparent hover:border-emerald-400/50 transition-all hover:scale-[1.02] flex items-center justify-between group";
       eraserBox.className = "cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 hover:border-rose-400/50 transition-all flex items-center justify-between text-emerald-300 hover:text-rose-300";
 
       if (tool === 'ph') {
-        phBox.className = "cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-teal-950/90 to-[#0c3128] border-2 border-cyan-400 shadow-lg shadow-cyan-950/50 transition-all hover:scale-[1.02] flex items-center justify-between group";
+        phBox.className = "cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-teal-950/90 to-[#0c3128] border-2 border-cyan-400 neon-glow-cyan transition-all hover:scale-[1.02] flex items-center justify-between group";
       } else if (tool === 'humidity') {
-        humBox.className = "cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-emerald-950/90 to-[#082a1d] border-2 border-emerald-400 shadow-lg shadow-emerald-950/50 transition-all hover:scale-[1.02] flex items-center justify-between group";
+        humBox.className = "cursor-pointer p-4 rounded-2xl bg-gradient-to-r from-emerald-950/90 to-[#082a1d] border-2 border-emerald-400 neon-glow-emerald transition-all hover:scale-[1.02] flex items-center justify-between group";
       } else if (tool === 'eraser') {
         eraserBox.className = "cursor-pointer p-3.5 rounded-2xl bg-rose-950/40 border-2 border-rose-400 text-rose-200 shadow-lg shadow-rose-950/40 transition-all flex items-center justify-between";
       }
     }
 
-    // Hint / Auto-Solve
     document.getElementById('hintBtn').addEventListener('click', () => {
       AppState.placedSensors = {
         '0_1': { type: 'ph' },
@@ -1308,7 +1715,6 @@
       recalculateEcosystem();
     });
 
-    // Reset Grid
     document.getElementById('resetGridBtn').addEventListener('click', () => {
       AppState.placedSensors = {};
       sound.playRemove();
@@ -1316,15 +1722,64 @@
       recalculateEcosystem();
     });
 
-    // Check & Show Completion Modal
-    function checkMissionCompletion(isManual) {
+    function checkMissionCompletion() {
       openModal();
     }
 
-    // Modal Display Logic
+    /* ==========================================================================
+       DİNAMİK ROZET & TEBRİK MODALI CANVAS ANİMASYONU
+       ========================================================================== */
+    let haloAnimationId = null;
+    function startBadgeHaloAnimation() {
+      const canvas = document.getElementById('modalBadgeHaloCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      let angle = 0;
+
+      function drawHalo() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        angle += 0.02;
+
+        // Rotating rays
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle);
+
+        const numRays = 12;
+        for (let i = 0; i < numRays; i++) {
+          const rayAngle = (i * Math.PI * 2) / numRays;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.arc(0, 0, 105, rayAngle - 0.08, rayAngle + 0.08);
+          ctx.closePath();
+          ctx.fillStyle = i % 2 === 0 ? 'rgba(52, 211, 153, 0.15)' : 'rgba(6, 182, 212, 0.12)';
+          ctx.fill();
+        }
+        ctx.restore();
+
+        // Pulsing outer orbit ring
+        const pulseRadius = 90 + Math.sin(angle * 2) * 5;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, pulseRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(52, 211, 153, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6, 8]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        haloAnimationId = requestAnimationFrame(drawHalo);
+      }
+
+      if (haloAnimationId) cancelAnimationFrame(haloAnimationId);
+      drawHalo();
+    }
+
     function openModal() {
       sound.playVictory();
       triggerCelebrationConfetti();
+      startBadgeHaloAnimation();
 
       const modal = document.getElementById('completionModal');
       modal.classList.remove('hidden');
@@ -1336,51 +1791,46 @@
     function closeModal() {
       const modal = document.getElementById('completionModal');
       modal.classList.add('opacity-0');
+      if (haloAnimationId) cancelAnimationFrame(haloAnimationId);
       setTimeout(() => {
         modal.classList.add('hidden');
       }, 300);
     }
 
-    // Claim Mission 1 Reward (+250 XP, Badge, Unlock Mission 2)
     function claimMission1Reward() {
       closeModal();
-      
       if (!AppState.mission1Completed) {
         AppState.mission1Completed = true;
-        
-        // 1. XP Counter Animation from 0 to 250
-        animateXpCounter(0, 250);
+        animateXpCounter(AppState.xp, AppState.xp + 250);
 
-        // 2. User Level Badge update
         AppState.userLevel = 'Bio-Robotics Master';
         const userLevelBadge = document.getElementById('userLevelBadge');
         userLevelBadge.innerText = 'Bio-Robotics Master ⭐';
         userLevelBadge.className = 'font-display text-xs font-bold text-emerald-300 tracking-wide transition-all';
 
-        // 3. Update Mission 1 Card to Completed
-        const mission1Card = document.getElementById('mission1Card');
-        mission1Card.classList.remove('border-emerald-400/80');
-        mission1Card.classList.add('border-cyan-400/80');
-        
         const startBtn = document.getElementById('startMission1Btn');
-        startBtn.innerHTML = `
-          <span>TAMAMLANDI ✓</span>
-        `;
+        startBtn.innerHTML = `<span>TAMAMLANDI ✓</span>`;
         startBtn.className = "w-full py-3.5 px-5 rounded-2xl bg-emerald-950 border border-emerald-400/60 text-emerald-300 font-display font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2";
 
-        // 4. Unlock Mission 2
-        unlockMission2();
-
-        // 5. Update Badge Showcase
         updateBadgeShowcase();
-
         showToast('+250 XP ve "Bio-Robotics Master" Rozeti Eklendi!');
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Smooth scroll to robot arm simulation
+      scrollToRobotArmSim();
     }
 
-    // Animate Points Counter
+    function updateBadgeShowcase() {
+      const previewIcon = document.getElementById('badgePreviewIcon');
+      const badgeStatusBadge = document.getElementById('badgeStatusBadge');
+      const badgeTitle = document.getElementById('badgePreviewTitle');
+
+      previewIcon.className = "w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-500/30 to-teal-400/30 border-2 border-emerald-400 p-2 flex items-center justify-center text-emerald-300 shadow-xl shadow-emerald-500/50 animate-pulse-soft";
+      badgeStatusBadge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-500/25 text-emerald-200 border border-emerald-400";
+      badgeStatusBadge.innerText = "KAZANILDI ✓";
+      badgeTitle.className = "font-display font-black text-xl text-emerald-300";
+    }
+
     function animateXpCounter(start, end) {
       const el = document.getElementById('xpCounter');
       const popEl = document.getElementById('xpFloatPop');
@@ -1413,49 +1863,336 @@
       requestAnimationFrame(update);
     }
 
-    // Unlock Mission 2 Card
-    function unlockMission2() {
-      AppState.mission2Unlocked = true;
-      const m2Badge = document.getElementById('mission2StatusBadge');
-      const m2Card = document.getElementById('mission2Card');
-      
-      m2Card.classList.remove('opacity-75');
-      m2Card.classList.add('border-teal-400/60', 'shadow-lg');
-      
-      m2Badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-200 border border-teal-400/40 flex items-center gap-1.5";
-      m2Badge.innerHTML = `
-        <span class="w-2 h-2 rounded-full bg-teal-300 animate-pulse"></span>
-        KEŞFE AÇIK
-      `;
+    function scrollToRobotArmSim() {
+      document.getElementById('robotArmSimSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Badge Showcase Update
-    function updateBadgeShowcase() {
-      const previewIcon = document.getElementById('badgePreviewIcon');
-      const badgeStatusBadge = document.getElementById('badgeStatusBadge');
-      const badgeTitle = document.getElementById('badgePreviewTitle');
+    /* ==========================================================================
+       GÖREV 2: KİNEMATİK ROBOT KOLU & BİYO-ÖRNEK TOPLAMA SİMÜLATÖRÜ
+       ========================================================================== */
+    const RobotSim = {
+      canvas: null,
+      ctx: null,
+      baseX: 100,
+      baseY: 280,
+      arm1Len: 120,
+      arm2Len: 100,
+      shoulderAngle: 40, // degrees
+      elbowExtension: 180, // virtual reach length
+      target: {
+        x: 295,
+        y: 165,
+        radius: 20,
+        collected: false
+      },
+      gripperOpen: true,
+      currentClawPos: { x: 0, y: 0 },
+      distanceToTarget: 100
+    };
 
-      previewIcon.className = "w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-400 to-teal-300 border border-emerald-200 flex items-center justify-center text-emerald-950 shadow-lg shadow-emerald-500/40 animate-pulse-soft";
-      badgeStatusBadge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-500/25 text-emerald-200 border border-emerald-400";
-      badgeStatusBadge.innerText = "KAZANILDI ✓";
-      badgeTitle.className = "font-display font-black text-xl text-emerald-300";
+    function initRobotArmSim() {
+      RobotSim.canvas = document.getElementById('robotArmCanvas');
+      if (!RobotSim.canvas) return;
+      RobotSim.ctx = RobotSim.canvas.getContext('2d');
+      
+      // Responsive internal canvas dimensions
+      RobotSim.canvas.width = 700;
+      RobotSim.canvas.height = 360;
+      RobotSim.baseX = 120;
+      RobotSim.baseY = 290;
+      RobotSim.target.x = 480;
+      RobotSim.target.y = 195;
+
+      updateRobotArmFromSliders();
     }
 
-    // Locked mission click toast
-    function handleLockedMission(num) {
-      sound.playBlip(250, 0.1);
-      if (num === 2) {
-        if (AppState.mission1Completed) {
-          showToast('Görev 2 Hazırlanıyor: Robotik kol kalibrasyon testi!');
-        } else {
-          showToast('Görev 2 Kilitli! Önce Görev 1\'i tamamlamalısınız.');
-        }
-      } else if (num === 3) {
-        showToast('Görev 3 Kilitli! Görev 1 ve Görev 2 tamamlandıktan sonra açılır.');
+    function updateRobotArmFromSliders() {
+      const angleSlider = document.getElementById('shoulderAngleSlider');
+      const extSlider = document.getElementById('elbowExtensionSlider');
+      
+      RobotSim.shoulderAngle = parseFloat(angleSlider.value);
+      RobotSim.elbowExtension = parseFloat(extSlider.value);
+
+      document.getElementById('angleValueDisplay').innerText = `${RobotSim.shoulderAngle}°`;
+      document.getElementById('extensionValueDisplay').innerText = `${RobotSim.elbowExtension} mm`;
+
+      sound.playRobotMove();
+      renderRobotArm();
+    }
+
+    function autoAlignRobotArm() {
+      // Find optimal slider values to land directly on target
+      const angleSlider = document.getElementById('shoulderAngleSlider');
+      const extSlider = document.getElementById('elbowExtensionSlider');
+      
+      angleSlider.value = 32;
+      extSlider.value = 248;
+      updateRobotArmFromSliders();
+      showToast('Robot kolu bitki örneğine otomatik kilitlendi! 🎯');
+    }
+
+    function renderRobotArm() {
+      const ctx = RobotSim.ctx;
+      const w = RobotSim.canvas.width;
+      const h = RobotSim.canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // 1. Draw Grid Background / High-Tech Grid Lines
+      ctx.strokeStyle = 'rgba(52, 211, 153, 0.08)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 35) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 35) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // 2. Draw Ground / Bio-Chamber Platform
+      ctx.fillStyle = '#06261b';
+      ctx.fillRect(0, RobotSim.baseY + 15, w, h - (RobotSim.baseY + 15));
+      ctx.strokeStyle = 'rgba(52, 211, 153, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, RobotSim.baseY + 15);
+      ctx.lineTo(w, RobotSim.baseY + 15);
+      ctx.stroke();
+
+      // Draw Specimen Pedestal
+      ctx.fillStyle = '#083827';
+      ctx.fillRect(RobotSim.target.x - 30, RobotSim.target.y + 15, 60, RobotSim.baseY + 15 - (RobotSim.target.y + 15));
+      ctx.strokeStyle = '#34d399';
+      ctx.strokeRect(RobotSim.target.x - 30, RobotSim.target.y + 15, 60, RobotSim.baseY + 15 - (RobotSim.target.y + 15));
+
+      // 3. Draw Target Specimen (Bioluminescent Plant Specimen)
+      if (!RobotSim.target.collected) {
+        // Target Aura
+        const pulse = Math.sin(Date.now() / 200) * 4;
+        ctx.beginPath();
+        ctx.arc(RobotSim.target.x, RobotSim.target.y, 24 + pulse, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(52, 211, 153, 0.2)';
+        ctx.fill();
+
+        // Target Crosshair Ring
+        ctx.beginPath();
+        ctx.arc(RobotSim.target.x, RobotSim.target.y, 16, 0, Math.PI * 2);
+        ctx.strokeStyle = '#34d399';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Target Plant Specimen Glyph (Seed / Sprout)
+        ctx.font = '22px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🌱', RobotSim.target.x, RobotSim.target.y);
+      } else {
+        // Sample Collected Pedestal Marker
+        ctx.font = '12px Outfit, sans-serif';
+        ctx.fillStyle = '#34d399';
+        ctx.textAlign = 'center';
+        ctx.fillText('NUMUNE ALINDI ✓', RobotSim.target.x, RobotSim.target.y);
+      }
+
+      // 4. Calculate Forward Kinematics
+      const rad1 = (-RobotSim.shoulderAngle * Math.PI) / 180;
+      const elbowX = RobotSim.baseX + Math.cos(rad1) * RobotSim.arm1Len;
+      const elbowY = RobotSim.baseY + Math.sin(rad1) * RobotSim.arm1Len;
+
+      // Second arm segment angle derived from extension length
+      const effectiveArm2 = RobotSim.elbowExtension - 40;
+      const rad2 = rad1 + 0.55; // natural forward bend
+      const clawX = elbowX + Math.cos(rad2) * effectiveArm2;
+      const clawY = elbowY + Math.sin(rad2) * effectiveArm2;
+      RobotSim.currentClawPos = { x: clawX, y: clawY };
+
+      // Calculate Distance to Target
+      const dx = clawX - RobotSim.target.x;
+      const dy = clawY - RobotSim.target.y;
+      const dist = Math.round(Math.sqrt(dx * dx + dy * dy));
+      RobotSim.distanceToTarget = dist;
+
+      // 5. Draw Robot Base
+      ctx.fillStyle = '#0f3d2e';
+      ctx.beginPath();
+      ctx.arc(RobotSim.baseX, RobotSim.baseY, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#06b6d4';
+      ctx.beginPath();
+      ctx.arc(RobotSim.baseX, RobotSim.baseY, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 6. Draw Arm Link 1 (Base to Elbow)
+      ctx.strokeStyle = '#1e5e49';
+      ctx.lineWidth = 14;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(RobotSim.baseX, RobotSim.baseY);
+      ctx.lineTo(elbowX, elbowY);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#34d399';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(RobotSim.baseX, RobotSim.baseY);
+      ctx.lineTo(elbowX, elbowY);
+      ctx.stroke();
+
+      // Elbow Joint
+      ctx.fillStyle = '#06b6d4';
+      ctx.beginPath();
+      ctx.arc(elbowX, elbowY, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // 7. Draw Arm Link 2 (Elbow to Wrist)
+      ctx.strokeStyle = '#144e3d';
+      ctx.lineWidth = 10;
+      ctx.beginPath();
+      ctx.moveTo(elbowX, elbowY);
+      ctx.lineTo(clawX, clawY);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(elbowX, elbowY);
+      ctx.lineTo(clawX, clawY);
+      ctx.stroke();
+
+      // 8. Draw Robotic Gripper Claws (End-Effector)
+      ctx.save();
+      ctx.translate(clawX, clawY);
+      ctx.rotate(rad2);
+
+      // Wrist socket
+      ctx.fillStyle = '#34d399';
+      ctx.fillRect(-6, -8, 12, 16);
+
+      // Gripper fingers
+      const clawSpread = RobotSim.gripperOpen ? 12 : 3;
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
+      // Top finger
+      ctx.beginPath();
+      ctx.moveTo(4, -clawSpread);
+      ctx.lineTo(16, -clawSpread + 2);
+      ctx.lineTo(20, -clawSpread + 8);
+      ctx.stroke();
+      // Bottom finger
+      ctx.beginPath();
+      ctx.moveTo(4, clawSpread);
+      ctx.lineTo(16, clawSpread - 2);
+      ctx.lineTo(20, clawSpread - 8);
+      ctx.stroke();
+
+      // If sample is gripped onto the claw
+      if (RobotSim.target.collected) {
+        ctx.font = '16px sans-serif';
+        ctx.fillText('🌱', 16, 0);
+      }
+
+      ctx.restore();
+
+      // 9. Draw Laser / Guidance beam to target
+      ctx.strokeStyle = dist <= 25 ? 'rgba(52, 211, 153, 0.7)' : 'rgba(251, 191, 36, 0.3)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(clawX, clawY);
+      ctx.lineTo(RobotSim.target.x, RobotSim.target.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Update HUD telemetries
+      updateRobotTelemetryHUD(dist);
+    }
+
+    function updateRobotTelemetryHUD(dist) {
+      const distDisplay = document.getElementById('targetDistanceDisplay');
+      const meterBar = document.getElementById('distanceMeterBar');
+      const badge = document.getElementById('alignmentBadge');
+      const lockPill = document.getElementById('lockStatusPill');
+      const actionBtn = document.getElementById('collectSampleBtn');
+      const actionText = document.getElementById('collectBtnText');
+
+      distDisplay.innerText = dist;
+      const pct = Math.max(5, Math.min(100, (1 - (dist / 140)) * 100));
+      meterBar.style.width = `${pct}%`;
+
+      if (dist <= 25) {
+        badge.innerText = 'HEDEF KİLİTLENDİ ✓';
+        badge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-400 animate-pulse';
+        lockPill.classList.remove('hidden');
+
+        actionBtn.disabled = false;
+        actionBtn.className = 'w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-emerald-950 font-display font-black text-sm tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-xl shadow-cyan-500/40 animate-pulse';
+        actionText.innerText = 'Numuneyi Yakala & Steril Tüpe Aktar 🌿';
+      } else {
+        badge.innerText = 'Hizalanıyor...';
+        badge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40';
+        lockPill.classList.add('hidden');
+
+        actionBtn.disabled = true;
+        actionBtn.className = 'w-full py-4 px-6 rounded-2xl bg-emerald-950/70 text-emerald-400/50 border border-emerald-800/50 font-display font-extrabold text-sm tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-not-allowed';
+        actionText.innerText = `Hedefe Yaklaşın (${dist} mm / 25 mm Altı Gerekli)`;
       }
     }
 
-    // Toast Notification System
+    function attemptCollectSample() {
+      if (RobotSim.distanceToTarget > 25) {
+        showToast('Robot kolu hedefe yeterince yakın değil! Mesafeyi 25 mm altına indirin.');
+        return;
+      }
+
+      // Close gripper
+      RobotSim.gripperOpen = false;
+      RobotSim.target.collected = true;
+      sound.playCollect();
+
+      document.getElementById('gripperStatusLabel').innerText = 'Kilitlendi (Numune Tutuldu ✓)';
+      document.getElementById('gripperStatusLabel').className = 'px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400 font-bold';
+
+      renderRobotArm();
+
+      if (!AppState.mission2Completed) {
+        AppState.mission2Completed = true;
+        triggerCelebrationConfetti();
+        animateXpCounter(AppState.xp, AppState.xp + 400);
+
+        document.getElementById('sampleCollectedBanner').classList.remove('hidden');
+
+        const m2Card = document.getElementById('mission2Card');
+        m2Card.classList.remove('border-cyan-400/80');
+        m2Card.classList.add('border-emerald-400/80');
+
+        const startBtn = document.getElementById('startMission2Btn');
+        startBtn.innerHTML = `<span>TAMAMLANDI (+400 XP) ✓</span>`;
+        startBtn.className = "w-full py-3.5 px-5 rounded-2xl bg-emerald-950 border border-emerald-400/60 text-emerald-300 font-display font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2";
+
+        showToast('Tebrikler! Biyo-Örnek Toplandı ve +400 XP Eklendi! 🏆');
+      }
+    }
+
+    function handleLockedMission(num) {
+      sound.playBlip(250, 0.1);
+      if (num === 3) {
+        showToast('Görev 3 Kilitli! Görev 1 ve Görev 2 tamamlandıktan sonra açılacaktır.');
+      }
+    }
+
     let toastTimeout;
     function showToast(msg) {
       const toast = document.getElementById('toastNotification');
@@ -1472,13 +2209,11 @@
       }, 3500);
     }
 
-    // Start Mission 1 Button Click (Smooth Scroll)
     document.getElementById('startMission1Btn').addEventListener('click', () => {
       sound.playBlip(750, 0.08);
       document.getElementById('simulationArea').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Audio Toggle
     const audioToggleBtn = document.getElementById('audioToggleBtn');
     const soundOnIcon = document.getElementById('soundOnIcon');
     const soundOffIcon = document.getElementById('soundOffIcon');
@@ -1488,7 +2223,7 @@
         soundOnIcon.classList.remove('hidden');
         soundOffIcon.classList.add('hidden');
         sound.playBlip(880, 0.1);
-        showToast('Doğa sesleri ve efektler açık 🌿');
+        showToast('Ses efektleri açık 🌿');
       } else {
         soundOnIcon.classList.add('hidden');
         soundOffIcon.classList.remove('hidden');
@@ -1496,9 +2231,6 @@
       }
     });
 
-    /* ==========================================================================
-       CELEBRATION CONFETTI CANVAS EFFECT
-       ========================================================================== */
     function triggerCelebrationConfetti() {
       const canvas = document.getElementById('celebrationCanvas');
       if (!canvas) return;
@@ -1507,9 +2239,9 @@
       canvas.height = window.innerHeight;
 
       const particles = [];
-      const colors = ['#34D399', '#10B981', '#14B8A6', '#06B6D4', '#FBBF24', '#FCD34D', '#FFFFFF'];
+      const colors = ['#34D399', '#10B981', '#14B8A6', '#06B6D4', '#FBBF24', '#FFFFFF'];
 
-      for (let i = 0; i < 130; i++) {
+      for (let i = 0; i < 120; i++) {
         particles.push({
           x: canvas.width / 2,
           y: canvas.height / 2,
@@ -1532,7 +2264,7 @@
         particles.forEach(p => {
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.22; // gravity
+          p.vy += 0.22;
           p.rotation += p.rotationSpeed;
           p.opacity -= p.decay;
 
@@ -1560,17 +2292,351 @@
       animate();
     }
 
+    /* ==========================================================================
+       GÖREV 3: BİOCORE DEVRE KURULUMU & TEMİZ ENERJİ ŞEBEKESİ ENGINE
+       ========================================================================== */
+    const BiocoreSim = {
+      canvas: null,
+      ctx: null,
+      channels: {
+        power: true,
+        can: true,
+        resistor: false,
+        filter: false
+      },
+      voltage: 11.2,
+      baudrate: 500,
+      active: false,
+      rotationAngle: 0,
+      pulseAnimId: null
+    };
+
+    function scrollToBiocoreSim() {
+      document.getElementById('biocoreSimSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function initBiocoreSim() {
+      BiocoreSim.canvas = document.getElementById('biocoreCanvas');
+      if (!BiocoreSim.canvas) return;
+      BiocoreSim.ctx = BiocoreSim.canvas.getContext('2d');
+      BiocoreSim.canvas.width = 700;
+      BiocoreSim.canvas.height = 360;
+
+      updateBiocoreCircuit();
+      startBiocoreAnimationLoop();
+    }
+
+    function toggleCircuitChannel(chan) {
+      BiocoreSim.channels[chan] = !BiocoreSim.channels[chan];
+      sound.playBlip(BiocoreSim.channels[chan] ? 600 : 350, 0.08);
+
+      const chanKeyMap = {
+        power: { card: 'chanPowerLine', badge: 'chanPowerBadge', name: '12V Ana Güç' },
+        can: { card: 'chanCanLine', badge: 'chanCanBadge', name: 'CAN-Bus Veri' },
+        resistor: { card: 'chanResistorLine', badge: 'chanResistorBadge', name: '120Ω Direnç' },
+        filter: { card: 'chanFilterLine', badge: 'chanFilterBadge', name: 'Biyo-Filtre' }
+      };
+
+      const meta = chanKeyMap[chan];
+      const cardEl = document.getElementById(meta.card);
+      const badgeEl = document.getElementById(meta.badge);
+
+      if (BiocoreSim.channels[chan]) {
+        cardEl.className = "cursor-pointer p-3.5 rounded-2xl bg-emerald-950/60 border-2 border-emerald-500/50 hover:border-emerald-400 transition-all flex items-center justify-between group shadow-sm";
+        badgeEl.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40";
+        badgeEl.innerText = "BAĞLI ✓";
+        showToast(`${meta.name} devresi bağlandı.`);
+      } else {
+        cardEl.className = "cursor-pointer p-3.5 rounded-2xl bg-emerald-950/40 border-2 border-slate-700/60 hover:border-emerald-400/60 transition-all flex items-center justify-between group";
+        badgeEl.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-slate-900 text-slate-400 border border-slate-700";
+        badgeEl.innerText = "AÇIK DEVRE ✗";
+        showToast(`${meta.name} devresi kesildi.`);
+      }
+
+      updateBiocoreCircuit();
+    }
+
+    function updateBiocoreCircuit() {
+      const vSlider = document.getElementById('voltageSlider');
+      const bSlider = document.getElementById('baudrateSlider');
+
+      BiocoreSim.voltage = parseFloat((vSlider.value / 10).toFixed(1));
+      BiocoreSim.baudrate = parseInt(bSlider.value);
+
+      const vDisplay = document.getElementById('voltageDisplay');
+      const bDisplay = document.getElementById('baudrateDisplay');
+
+      vDisplay.innerText = `${BiocoreSim.voltage.toFixed(1)} V`;
+      bDisplay.innerText = `${BiocoreSim.baudrate} kbps`;
+
+      // Check criteria:
+      // Channels (15% each = 60%)
+      let score = 0;
+      if (BiocoreSim.channels.power) score += 15;
+      if (BiocoreSim.channels.can) score += 15;
+      if (BiocoreSim.channels.resistor) score += 15;
+      if (BiocoreSim.channels.filter) score += 15;
+
+      // Voltage in 12.0 - 12.6 range (+20%)
+      const voltOk = BiocoreSim.voltage >= 12.0 && BiocoreSim.voltage <= 12.6;
+      if (voltOk) score += 20;
+
+      // CAN baud rate == 1000 kbps (+20%)
+      const canOk = BiocoreSim.baudrate === 1000;
+      if (canOk) score += 20;
+
+      // Update Power Pill & Telemetries
+      const powerPill = document.getElementById('biocorePowerPill');
+      const gridStatus = document.getElementById('gridStatusText');
+      const canHealth = document.getElementById('canHealthText');
+      const btn = document.getElementById('activateBiocoreBtn');
+      const btnText = document.getElementById('biocoreBtnText');
+
+      powerPill.innerText = `GÜÇ: %${score}`;
+
+      if (voltOk) {
+        vDisplay.className = "font-display font-extrabold text-emerald-300 text-sm bg-emerald-950 px-2.5 py-0.5 rounded-lg border border-emerald-400/50";
+      } else {
+        vDisplay.className = "font-display font-extrabold text-amber-300 text-sm bg-emerald-950 px-2.5 py-0.5 rounded-lg border border-amber-400/40";
+      }
+
+      if (canOk) {
+        bDisplay.className = "font-display font-extrabold text-cyan-300 text-sm bg-cyan-950 px-2.5 py-0.5 rounded-lg border border-cyan-400/60";
+        canHealth.innerText = "1000 kbps (Senkronize ✓)";
+        canHealth.className = "text-emerald-300";
+      } else {
+        bDisplay.className = "font-display font-extrabold text-amber-300 text-sm bg-cyan-950 px-2.5 py-0.5 rounded-lg border border-amber-400/40";
+        canHealth.innerText = `${BiocoreSim.baudrate} kbps (Düşük Frekans)`;
+        canHealth.className = "text-amber-300";
+      }
+
+      if (score === 100) {
+        powerPill.className = "px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-500/25 text-emerald-300 border border-emerald-400 backdrop-blur-md animate-pulse";
+        gridStatus.innerText = "Nominal & Enerjilenmeye Hazır ✓";
+        gridStatus.className = "text-emerald-300 font-bold";
+
+        btn.disabled = false;
+        btn.className = "w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-emerald-950 font-display font-black text-base tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-xl shadow-emerald-500/40 animate-pulse";
+        btnText.innerText = "Biocore Şebekesini Başlat & Enerjilendir (+600 XP) ⚡";
+      } else {
+        powerPill.className = "px-3 py-1 rounded-full text-[11px] font-bold bg-amber-950/80 text-amber-300 border border-amber-500/40 backdrop-blur-md";
+        gridStatus.innerText = "Dengesiz / Hatlar Eksik";
+        gridStatus.className = "text-amber-300";
+
+        btn.disabled = true;
+        btn.className = "w-full py-4 px-6 rounded-2xl bg-emerald-950/70 text-emerald-400/50 border border-emerald-800/50 font-display font-extrabold text-sm tracking-wide uppercase transition-all flex items-center justify-center gap-3 cursor-not-allowed";
+        btnText.innerText = `Devre Hatlarını & Kalibrasyonu Tamamlayın (%${score} / %100)`;
+      }
+    }
+
+    function autoTuneBiocoreCircuit() {
+      BiocoreSim.channels.power = true;
+      BiocoreSim.channels.can = true;
+      BiocoreSim.channels.resistor = true;
+      BiocoreSim.channels.filter = true;
+
+      // Update Channel UI Badges
+      ['power', 'can', 'resistor', 'filter'].forEach(c => {
+        const chanKeyMap = {
+          power: { card: 'chanPowerLine', badge: 'chanPowerBadge' },
+          can: { card: 'chanCanLine', badge: 'chanCanBadge' },
+          resistor: { card: 'chanResistorLine', badge: 'chanResistorBadge' },
+          filter: { card: 'chanFilterLine', badge: 'chanFilterBadge' }
+        };
+        const meta = chanKeyMap[c];
+        const cardEl = document.getElementById(meta.card);
+        const badgeEl = document.getElementById(meta.badge);
+        cardEl.className = "cursor-pointer p-3.5 rounded-2xl bg-emerald-950/60 border-2 border-emerald-500/50 hover:border-emerald-400 transition-all flex items-center justify-between group shadow-sm";
+        badgeEl.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40";
+        badgeEl.innerText = "BAĞLI ✓";
+      });
+
+      // Set optimal sliders
+      document.getElementById('voltageSlider').value = 124;
+      document.getElementById('baudrateSlider').value = 1000;
+
+      sound.playCollect();
+      showToast('Biocore devresi 12.4V & 1Mbps standardına otomatik kalibre edildi! ⚡');
+      updateBiocoreCircuit();
+    }
+
+    function startBiocoreAnimationLoop() {
+      const canvas = BiocoreSim.canvas;
+      const ctx = BiocoreSim.ctx;
+      let particleOffset = 0;
+
+      function render() {
+        if (!canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        particleOffset += BiocoreSim.active ? 0.08 : 0.03;
+        BiocoreSim.rotationAngle += BiocoreSim.active ? 0.06 : 0.015;
+
+        // 1. Motherboard PCB Grid Background
+        ctx.strokeStyle = 'rgba(52, 211, 153, 0.07)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 30) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 30) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.stroke();
+        }
+
+        // 2. PCB Node Positions
+        const nodes = [
+          { name: '12V PDB', x: 130, y: 80, active: BiocoreSim.channels.power, color: '#f59e0b', icon: '🔋' },
+          { name: 'CAN-Bus', x: 570, y: 80, active: BiocoreSim.channels.can, color: '#06b6d4', icon: '📡' },
+          { name: '120Ω Term', x: 130, y: 280, active: BiocoreSim.channels.resistor, color: '#a855f7', icon: '🧲' },
+          { name: 'Biyo-Filtre', x: 570, y: 280, active: BiocoreSim.channels.filter, color: '#10b981', icon: '🌿' }
+        ];
+
+        // 3. Draw Circuit Traces (Wires) connecting Nodes to Center Core
+        nodes.forEach(node => {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(cx, cy);
+          ctx.lineWidth = node.active ? 3.5 : 1.5;
+          ctx.strokeStyle = node.active ? node.color : 'rgba(52, 211, 153, 0.2)';
+          ctx.stroke();
+
+          // Animated electron packets flowing toward center when active
+          if (node.active) {
+            const numPackets = 3;
+            for (let i = 0; i < numPackets; i++) {
+              const t = ((particleOffset + i / numPackets) % 1);
+              const px = node.x + (cx - node.x) * t;
+              const py = node.y + (cy - node.y) * t;
+
+              ctx.beginPath();
+              ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+              ctx.fillStyle = node.color;
+              ctx.shadowColor = node.color;
+              ctx.shadowBlur = 10;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          }
+
+          // Draw Node Box
+          ctx.fillStyle = node.active ? 'rgba(9, 39, 30, 0.95)' : 'rgba(5, 20, 15, 0.8)';
+          ctx.strokeStyle = node.active ? node.color : 'rgba(52, 211, 153, 0.3)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(node.x - 45, node.y - 30, 90, 60, 14);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.font = '18px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(node.icon, node.x, node.y - 4);
+
+          ctx.font = 'bold 10px Outfit, sans-serif';
+          ctx.fillStyle = node.active ? '#ffffff' : '#6ee7b7';
+          ctx.fillText(node.name, node.x, node.y + 18);
+        });
+
+        // 4. Center Biocore Reactor Core
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        // Ambient core glow
+        ctx.beginPath();
+        ctx.arc(0, 0, BiocoreSim.active ? 75 : 55, 0, Math.PI * 2);
+        ctx.fillStyle = BiocoreSim.active ? 'rgba(16, 185, 129, 0.35)' : 'rgba(6, 182, 212, 0.15)';
+        ctx.fill();
+
+        // Spinning Reactor Plasma Blades
+        ctx.rotate(BiocoreSim.rotationAngle);
+        const blades = 6;
+        for (let b = 0; b < blades; b++) {
+          ctx.rotate((Math.PI * 2) / blades);
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(35, 12);
+          ctx.lineTo(45, 0);
+          ctx.lineTo(35, -12);
+          ctx.closePath();
+          ctx.fillStyle = BiocoreSim.active ? 'rgba(52, 211, 153, 0.8)' : 'rgba(6, 182, 212, 0.5)';
+          ctx.fill();
+        }
+
+        ctx.restore();
+
+        // Inner Reactor Ring & Center Text
+        ctx.beginPath();
+        ctx.arc(cx, cy, 28, 0, Math.PI * 2);
+        ctx.fillStyle = '#062018';
+        ctx.fill();
+        ctx.strokeStyle = BiocoreSim.active ? '#34d399' : '#06b6d4';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.font = 'bold 11px Outfit, sans-serif';
+        ctx.fillStyle = BiocoreSim.active ? '#a7f3d0' : '#67e8f9';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(BiocoreSim.active ? 'ONLINE' : 'BIOCORE', cx, cy);
+
+        BiocoreSim.pulseAnimId = requestAnimationFrame(render);
+      }
+
+      if (BiocoreSim.pulseAnimId) cancelAnimationFrame(BiocoreSim.pulseAnimId);
+      render();
+    }
+
+    function activateBiocoreGrid() {
+      BiocoreSim.active = true;
+      sound.playVictory();
+      triggerCelebrationConfetti();
+
+      // Award +600 XP
+      animateXpCounter(AppState.xp, AppState.xp + 600);
+
+      // Upgrade to highest user title
+      AppState.userLevel = 'Grand Bio-Robotics Champion 🏆';
+      const userLevelBadge = document.getElementById('userLevelBadge');
+      userLevelBadge.innerText = 'Grand Champion 🏆';
+      userLevelBadge.className = 'font-display text-xs font-bold text-amber-300 tracking-wide transition-all';
+
+      // Show Banner
+      document.getElementById('biocoreCompleteBanner').classList.remove('hidden');
+
+      // Update Card 3
+      const m3Card = document.getElementById('mission3Card');
+      m3Card.classList.remove('border-emerald-400/80');
+      m3Card.classList.add('border-amber-400/80', 'shadow-2xl');
+
+      const startBtn = document.getElementById('startMission3Btn');
+      startBtn.innerHTML = `<span>ŞAMPİYON TAMAMLANDI (+600 XP) ✓</span>`;
+      startBtn.className = "w-full py-3.5 px-5 rounded-2xl bg-emerald-950 border border-amber-400/60 text-amber-300 font-display font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2";
+
+      showToast('TEBRİKLER! Biocore Devresi Başlatıldı & +600 XP Kazanıldı! 🌟');
+    }
+
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('celebrationCanvas');
       if (canvas) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
+      const rCanvas = document.getElementById('robotArmCanvas');
+      if (rCanvas) {
+        renderRobotArm();
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
       initGridData();
       recalculateEcosystem();
+      initRobotArmSim();
+      initBiocoreSim();
     });
   </script>
 </body>
